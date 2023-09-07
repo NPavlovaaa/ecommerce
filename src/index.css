@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo&family=Kanit:wght@300&display=swap');
 
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   font-family: 'Heebo', sans-serif;
   line-height: 1.5;
@@ -7,7 +12,6 @@
 
   /*color-scheme: light dark;*/
   /*color: rgba(255, 255, 255, 0.87);*/
-  background-color: #FAFAFA;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

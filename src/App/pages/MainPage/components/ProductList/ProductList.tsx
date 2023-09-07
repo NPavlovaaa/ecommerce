@@ -27,7 +27,7 @@ const ProductList = () => {
             </div>
             <div className={styles.main_block__list}>
                 {products.map(item => {
-                    // console.log(item)
+                    console.log(item)
                     const getCaption = item.title.split(' ');
                     const captionSlot = getCaption[getCaption.length-1];
 

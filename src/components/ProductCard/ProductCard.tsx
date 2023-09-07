@@ -2,13 +2,12 @@ import React from 'react';
 import Text from "../Text";
 import styles from "./ProductCard.module.scss";
 import Button from "../Button";
-import image from '../../assets/image.jpg'
 
 export type CardProps = {
     /** Дополнительный classname */
     className?: string,
     /** URL изображения */
-    images?: Array<string>;
+    images: string;
     /** Слот над заголовком */
     captionSlot?: React.ReactNode;
     /** Заголовок карточки */
@@ -37,7 +36,7 @@ const ProductCard: React.FC<CardProps> = ({
     return (
         <div className={`${styles.parent} ${className}`} onClick={onClick ? onClick : null}>
             <div className={styles.card_header}>
-                <img src={image} className={styles.card_header__img}/>
+                <img src={images} className={styles.card_header__img} alt="image product"/>
             </div>
             <div className={styles.card_body}>
                 <div className={styles.card_body__text_block}>
@@ -46,8 +45,10 @@ const ProductCard: React.FC<CardProps> = ({
                     <Text children={description} color="secondary" maxLines={parseInt("3")}></Text>
                 </div>
                 <div className={styles.card_body__footer_block}>
-                    {contentSlot ? <Text children={contentSlot} view="p-18" weight="bold"></Text> : null}
-                    <Button>Add to cart</Button>
+                    {contentSlot ? <Text children={contentSlot} view="p-18" weight="bold"/> : null}
+                    <Button>
+                        <Text children="Add to cart" view="button"/>
+                    </Button>
                     {actionSlot ? actionSlot : null}
                 </div>
             </div>

@@ -4,13 +4,15 @@ import styles from "./Input.module.scss";
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>,
     'onChange' | 'value'
     > & {
-  /** Значение поля */
-  value?: string;
-  /** Callback, вызываемый при вводе данных в поле */
-  onChange: (value: string) => void;
-  /** Слот для иконки справа */
-  afterSlot?: React.ReactNode;
-  disabled?: boolean;
+    /** Значение поля */
+    value?: string;
+    /** Callback, вызываемый при вводе данных в поле */
+    onChange: (value: string) => void;
+    /** Слот для иконки справа */
+    afterSlot?: React.ReactNode;
+    disabled?: boolean;
+    className?: string,
+    placeholder?: string
 };
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -19,6 +21,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
        onChange,
        afterSlot,
        disabled = false,
+       className,
+       placeholder,
        ...props
      }) => {
 
@@ -28,10 +32,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       }
 
       return (
-          <div className={styles.main_block}>
-            <input type="text" value={value} disabled={disabled} onChange={handleChange} {...props}/>
-            <label>{afterSlot ? afterSlot : null}</label>
-          </div>
+          <>
+            <input placeholder={placeholder} className={styles.input} type="text" value={value} disabled={disabled} onChange={handleChange} {...props}/>
+            <label className={styles.label}>{afterSlot ? afterSlot : null}</label>
+          </>
       );
     });
 

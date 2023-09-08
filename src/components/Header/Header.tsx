@@ -15,18 +15,18 @@ const Header = () => {
                 <img src={Lalasia} alt="logo text"/>
             </div>
             <div className={styles.main_block__menu}>
-                <ul>
-                    <li>
+                <ul className={styles.main_block__menu__ul}>
+                    <li className={styles.main_block__menu__ul__li}>
                         <NavLink to="/" style={({isActive}) => ({color: isActive ? '#487773' : 'inherit', borderBottom: isActive ? '3px solid #487773' : 'inherit'})}>
                             <Text children="Products" view="p-18"/>
                         </NavLink>
                     </li>
-                    <li>
+                    <li className={styles.main_block__menu__ul__li}>
                         <NavLink to="/categories" style={({isActive}) => ({color: isActive ? '#487773' : 'inherit', borderBottom: isActive ? '3px solid #487773' : 'inherit'})}>
                             <Text children="Categories" view="p-18"/>
                         </NavLink>
                     </li>
-                    <li>
+                    <li className={styles.main_block__menu__ul__li}>
                         <NavLink to="/about" style={({isActive}) => ({color: isActive ? '#487773' : 'inherit', borderBottom: isActive ? '3px solid #487773' : 'inherit'})}>
                             <Text children="About us" view="p-18"/>
                         </NavLink>

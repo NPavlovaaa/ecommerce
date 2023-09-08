@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-l, 32px);
+  justify-content: center;
 
   &__title_list{
     display: flex;
@@ -16,6 +17,12 @@
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 30px;
+  }
+
+  .pagination{
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 
 }

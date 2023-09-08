@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon, { IconProps } from '../Icon';
 
-const CheckIcon: React.FC<IconProps> = (props) => {
+const CheckIcon: React.FC<IconProps> = ({props}) => {
 
     const { icon: _, ...restProps } = props;
 

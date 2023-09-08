@@ -1,4 +1,3 @@
-import {useEffect, useState} from "react";
 import styles from './Info.module.scss';
 import Text from "components/Text";
 

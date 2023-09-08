@@ -1,18 +1,16 @@
 import React from 'react';
 import Icon, { IconProps } from '../Icon';
 
-const ArrowDownIcon: React.FC<IconProps> = (props) => {
-
-    const { icon: _, ...restProps } = props;
+const ArrowDownIcon: React.FC<IconProps> = ({ icon: _, color, ...restProps }) => {
 
     const primary: string = "#000000";
     const secondary: string = "#AFADB5";
     const accent: string =  "#518581";
 
     let localColor: string | undefined
-    localColor = props.color ? props.color : undefined
+    localColor = color ? color : undefined
 
-    switch (props.color) {
+    switch (color) {
         case "primary":
             localColor = primary
             break

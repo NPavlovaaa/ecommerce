@@ -2,6 +2,7 @@ import React from 'react';
 import Text from "../Text";
 import styles from "./ProductCard.module.scss";
 import Button from "../Button";
+import {Link} from "react-router-dom";
 
 export type CardProps = {
     /** Дополнительный classname */
@@ -20,6 +21,7 @@ export type CardProps = {
     onClick?: React.MouseEventHandler;
     /** Слот для действия */
     actionSlot?: React.ReactNode;
+    id: number
 };
 
 const ProductCard: React.FC<CardProps> = ({
@@ -31,13 +33,16 @@ const ProductCard: React.FC<CardProps> = ({
    contentSlot= "",
    onClick,
    actionSlot,
+   id,
 }) => {
 
     return (
-        <div className={`${styles.parent} ${className}`} onClick={onClick ? onClick : null}>
-            <div className={styles.card_header}>
-                <img src={images} className={styles.card_header__img} alt="image product"/>
-            </div>
+        <div key={id} className={`${styles.parent} ${className}`} onClick={onClick ? onClick : null}>
+            <Link to={`/product/${id}`}>
+                <div className={styles.card_header}>
+                    <img src={images} className={styles.card_header__img} alt="image product"/>
+                </div>
+            </Link>
             <div className={styles.card_body}>
                 <div className={styles.card_body__text_block}>
                     <Text children={captionSlot} view="p-14" color="secondary" weight="bold"></Text>

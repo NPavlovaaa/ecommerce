@@ -39,9 +39,8 @@ const ProductList = () => {
                     console.log(item)
                     const getCaption = item.title.split(' ');
                     const captionSlot = getCaption[getCaption.length-1];
-
                     return (
-                        <ProductCard captionSlot={captionSlot} contentSlot={`${item.price} $`} {...item}/>
+                       <ProductCard captionSlot={captionSlot} contentSlot={`${item.price} $`} {...item}/>
                     )
                 })}
             </div>

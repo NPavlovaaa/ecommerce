@@ -1,0 +1,19 @@
+.product_body_page{
+  padding: 60px 100px 48px 100px;
+
+  &__back{
+    display: flex;
+    gap: var(--space-xs, 12px);
+    height: 48px;
+    align-items: center;
+    cursor: pointer;
+
+    .arrow_back {
+      display: flex;
+      width: 32px;
+      height: 32px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

@@ -1,3 +1,5 @@
+@import "variables";
+
 .pagination_container {
   display: inline-flex;
   align-items: flex-start;
@@ -19,25 +21,25 @@
       cursor: default;
     }
     &:hover {
-      background-color: #518581;
+      background-color: $accent;
       cursor: pointer;
       color: white;
     }
 
     &.selected {
-      background-color: #518581;
+      background-color: $accent;
     }
 
     .arrow {
-      &::before {
 
+      &::before {
         position: relative;
         content: '';
         display: inline-block;
         width: 0.4em;
         height: 0.4em;
-        border-right: 0.12em solid black;
-        border-top: 0.12em solid black;
+        border-right: 0.12em solid $primary;
+        border-top: 0.12em solid $primary;
         cursor: pointer;
       }
 
@@ -54,8 +56,8 @@
       pointer-events: none;
 
       .arrow::before {
-        border-right: 0.12em solid #AFADB5;
-        border-top: 0.12em solid #AFADB5;
+        border-right: 0.12em solid $secondary;
+        border-top: 0.12em solid $secondary;
       }
 
       &:hover {

@@ -1,5 +1,8 @@
 .product_body_page{
+  display: flex;
+  flex-direction: column;
   padding: 60px 100px 48px 100px;
+  gap: var(--space-xl, 32px);
 
   &__back{
     display: flex;

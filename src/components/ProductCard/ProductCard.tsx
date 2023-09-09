@@ -8,7 +8,7 @@ export type CardProps = {
     /** Дополнительный classname */
     className?: string,
     /** URL изображения */
-    images: string;
+    image: string;
     /** Слот над заголовком */
     captionSlot?: React.ReactNode;
     /** Заголовок карточки */
@@ -26,7 +26,7 @@ export type CardProps = {
 
 const ProductCard: React.FC<CardProps> = ({
    className,
-   images,
+   image,
    captionSlot,
    title,
    description,
@@ -40,7 +40,7 @@ const ProductCard: React.FC<CardProps> = ({
         <div key={id} className={`${styles.parent} ${className}`} onClick={onClick ? onClick : null}>
             <Link to={`/product/${id}`}>
                 <div className={styles.card_header}>
-                    <img src={images} className={styles.card_header__img} alt="image product"/>
+                    <img src={image} className={styles.card_header__img} alt="image product"/>
                 </div>
             </Link>
             <div className={styles.card_body}>

@@ -1,40 +1,31 @@
-:root{
-    --button-primary-bg: #518581;
-    --button-primary-text: #FFFFFF;
-    --button-primary-bg-hover: #86AAA7;
-    --button-primary-text-hover: #FFFFFF;
-    --button-primary-bg-disabled: #D9D9D9;
-    --button-primary-text-disabled: #FFFFFF;
-    --button-primary-bg-active: #487773;
-    --button-primary-text-active: #FFFFFF;
-}
+@import "variables";
 
 button, .loading-only:hover {
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: $space-xxs;
     padding: 14px 20px;
-    background-color: var(--button-primary-bg);
-    color: var(--button-primary-text);
+    background-color: $accent;
+    color: white;
 
     p{
         line-height: 24px !important;
     }
 
     &:hover {
-        background-color: var(--button-primary-bg-hover);
-        color: var(--button-primary-text-hover);
+        background-color: $accent-hover;
+        color: white;
     }
 
     &:disabled:not(.loading-only), &:disabled:hover:not(.loading-only) {
-        background-color: var(--button-primary-bg-disabled);
-        color: var(--button-primary-text-disabled);
+        background-color: $light-white;
+        color: white;
     }
 
     &:active {
-        background-color: var(--button-primary-bg-active);
-        color: var(--button-primary-text-active);
+        background-color: $accent;
+        color: white;
     }
 }

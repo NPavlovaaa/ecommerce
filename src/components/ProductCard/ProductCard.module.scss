@@ -1,30 +1,31 @@
-:root {
-    --card-bg: #FFFFFF;
-    --card-image-bg: #D9D9D9;
-}
+@import "variables";
 
 .parent {
     display: flex;
     flex-direction: column;
-    background-color: var(--card-bg);
+    background-color: white;
     align-items: flex-start;
-    gap: var(--space-xl, 48px);
+    gap: $space-xl;
     width: 360px;
-    padding-bottom: 48px;
+    padding-bottom: $space-xl;
     justify-content: center;
 
     &:hover {
-        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
     }
 }
 
 .card_header{
-
+    display: flex;
+    width: 360px;
+    height: 360px;
+    background-color: $light-white;
+    align-items: center;
     &__img{
         box-sizing: border-box;
         max-width: 100%;
-        height: 360px;
-        background-color: var(--card-image-bg);
+        height: auto;
+        width: auto;
         flex-shrink: 0;
     }
 }
@@ -35,23 +36,23 @@
 
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-l, 32px);
+    gap: $space-l;
 
     &__text_block{
-        padding: 0px var(--space-xs, 12px);
+        padding: 0 $space-xs;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--space-xxs, 8px);
+        gap: $space-xxs;
         align-self: stretch;
     }
 
     &__footer_block {
-        padding: 0px var(--space-xs, 12px);
+        padding: 0 $space-xs;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: var(--space-xxs, 8px);
+        gap: $space-xxs;
         align-self: stretch;
     }
 }

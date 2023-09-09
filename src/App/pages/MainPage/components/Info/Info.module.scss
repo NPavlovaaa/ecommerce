@@ -1,5 +1,7 @@
+@import "variables";
+
 .main_block{
-  margin-bottom: 48px;
+  margin-bottom: $space-l;
   justify-content: center;
   justify-items: center;
   width: 653px;
@@ -7,7 +9,7 @@
   height: 128px;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-m, 24px);
+  gap: $space-m;
   flex-shrink: 0;
 }
 

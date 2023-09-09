@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import styles from './Product.module.scss';
 import Text from "components/Text";
@@ -20,7 +20,7 @@ const Product = () => {
                     const prod = {
                         id: data.data.id,
                         title: data.data.title,
-                        image: data.data.image,
+                        image: data.data.images[0],
                         description: data.data.description,
                         price: data.data.price,
                     }
@@ -31,10 +31,12 @@ const Product = () => {
         fetch();
     }, [])
 
+    console.log(product)
+
     return(
         <div className={styles.product_info}>
-            <div className={styles.product_info__image}>
-                <img src={product ? product.image : ''}/>
+            <div className={styles.product_info__image_block}>
+                <img src={product ? product.image : ''} className={styles.product_info__image_block__img} alt="product image"/>
             </div>
             <div className={styles.product_info__desc}>
                 <div className={styles.product_info__desc__text}>

@@ -1,20 +1,20 @@
 import styles from "./ProductPage.module.scss"
 import Text from "../../../components/Text";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Arrow from "../../../assets/arrow-right.svg";
-import axios from "axios";
-import Button from "../../../components/Button";
 import Product from "./components/Product";
+import RelatedProducts from "./components/RelatedProducts";
 
 const ProductPage = () => {
 
     return(
         <div className={styles.product_body_page}>
             <div className={styles.product_body_page__back}>
-                <img src={Arrow} className={styles.arrow_back}/>
+                <img src={Arrow} className={styles.arrow_back} alt="button back icon"/>
                 <Text view="p-20" children="Back"/>
             </div>
             <Product/>
+            <RelatedProducts category={1}/>
         </div>
     )
 }

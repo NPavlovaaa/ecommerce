@@ -1,3 +1,5 @@
+@import "variables";
+
 .main_block{
     display: flex;
     height: 90px;
@@ -12,7 +14,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: var(--space-xs, 12px);
+        gap: $space-xs;
     }
 
     &__menu{
@@ -20,11 +22,10 @@
         height: 90px;
         align-items: center;
 
-
         &__ul {
             display: flex;
             list-style-type:  none;
-            gap: var(--space-xl, 48px);
+            gap: $space-xl;
             justify-content: center;
             padding: 0;
 
@@ -33,7 +34,6 @@
                 width: 85px;
                 justify-content: center;
                 height: 90px;
-                //gap: 10px;
 
                 a{
                     text-decoration: none;
@@ -47,6 +47,6 @@
 
     &_account{
         display: flex;
-        gap: var(--space-m, 24px);
+        gap:$space-m;
     }
 }

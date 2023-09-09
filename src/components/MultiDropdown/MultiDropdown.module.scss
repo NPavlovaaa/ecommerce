@@ -1,3 +1,5 @@
+@import "variables";
+
 .multi_dropdown {
     display: flex;
     width: 300px;
@@ -5,7 +7,7 @@
     align-items: center;
 
     &__ul {
-        background-color: #FFFFFF;
+        background-color: white;
         width: 300px;
         margin-top: 226px;
         padding: 0;
@@ -18,15 +20,15 @@
         padding: 14px 12px;
 
         &:hover {
-            color: #AFADB5;
+            color: $secondary;
         }
 
         &.selected{
-            color: #518581;
+            color: $accent;
         }
     }
 
 }
 .focused {
-    border: 1px solid #518581;
+    border: 1px solid $accent;
 }

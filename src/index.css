@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Heebo&family=Kanit:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2? Family= Roboto & display=swap');
 
 html, body{
   margin: 0;
@@ -6,7 +6,7 @@ html, body{
 }
 
 :root {
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Roboto', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 

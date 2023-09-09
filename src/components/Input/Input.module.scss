@@ -1,17 +1,19 @@
+@import "variables";
+
 .input {
     display: flex;
     width: inherit;
-    background-color: #FFFFFF;
+    background-color: white;
     border: none;
-    padding: var(--space-s, 16px) var(--space-xs, 12px);
+    padding: $space-s $space-xs;
     font-size: 16px;
-    color: #000000;
+    color: $primary;
     outline: none;
     align-items: center;
-    gap: var(--space-xxs, 8px);
+    gap: $space-xxs;
 
     &::placeholder, &:disabled, input:focus{
-        color: #AFADB5;
+        color: $secondary;
     }
 
 }

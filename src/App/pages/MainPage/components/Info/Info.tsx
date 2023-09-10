@@ -6,11 +6,10 @@ const Info: React.FC = () => {
 
     return(
         <div className={styles.main_block}>
-            <Text view="title" weight="bold" className=''>Products</Text>
-            <Text view="p-20" color="secondary">
-                We display products based on the latest products we have, if you want
-                to see our old products please enter the name of the item
-            </Text>
+            <Text view="title" weight="bold" children="Products"/>
+            <Text view="p-20" color="secondary"
+                  children=" We display products based on the latest products we have,
+                if you want to see our old products please enter the name of the item"/>
         </div>
     )
 }

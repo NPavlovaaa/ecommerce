@@ -2,7 +2,7 @@
 
 .back{
   display: flex;
-  gap: var(--space-xs, 12px);
+  gap: $space-xs;
   height: 48px;
   align-items: center;
   cursor: pointer;
@@ -19,7 +19,7 @@
 .product_info{
   display: flex;
   align-items: flex-start;
-  gap: var(--space-xl, 48px);
+  gap: $space-xl;
 
   &__image_block{
     display: flex;
@@ -45,20 +45,19 @@
     height: 359px;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-xl, 48px);
+    gap: $space-xl;
 
     &__text{
       display: flex;
       height: 128px;
       flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-m, 24px);
+      gap: $space-m;
       flex-shrink: 0;
     }
 
     &__price{
       display: flex;
-      padding-top: var(--space-l, 32px);
+      padding-top: $space-l;
       flex-direction: column;
       align-items: flex-start;
       gap: var(--space-xl, 48px);
@@ -66,10 +65,8 @@
       &__button{
         display: flex;
         align-items: flex-start;
-        gap: var(--space-xl, 48px);
+        gap: $space-xl;
       }
     }
   }
-
-
 }

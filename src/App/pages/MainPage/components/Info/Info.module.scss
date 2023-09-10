@@ -1,16 +1,13 @@
 @import "variables";
 
 .main_block{
-  margin-bottom: $space-l;
-  justify-content: center;
-  justify-items: center;
-  width: 653px;
-  display: inline-flex;
-  height: 128px;
+  display: flex;
   flex-direction: column;
-  align-items: center;
   gap: $space-m;
   flex-shrink: 0;
+  margin-bottom: $space-l;
+  padding: 0 25%;
+  text-align: center;
 }
 
 

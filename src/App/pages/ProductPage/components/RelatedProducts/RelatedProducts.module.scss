@@ -1,14 +1,16 @@
+@import "variables";
+
 .related_main_block{
   margin-top: 16px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-l, 32px);
+  gap: $space-l;
 
   &__title_list{
     display: flex;
     align-items: center;
-    gap: var(--space-m, 24px);
+    gap: $space-m;
   }
 
   &__list{

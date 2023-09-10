@@ -8,7 +8,10 @@ import React from "react";
 const MainPage: React.FC = () => {
     return(
         <div className={styles.body_page}>
-            <Info/>
+            <div >
+                <Info/>
+            </div>
+
             <div className={styles.body_page__body}>
                 <div className={styles.body_page__body__tools}>
                     <Search/>

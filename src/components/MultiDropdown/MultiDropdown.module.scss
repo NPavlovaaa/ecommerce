@@ -2,7 +2,6 @@
 
 .multi_dropdown {
     display: flex;
-    //justify-content: space-between;
     align-items: center;
 
     &__ul {
@@ -12,6 +11,7 @@
         padding: 0;
         box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
         position: absolute;
+        text-align: center;
     }
 
     &__li {

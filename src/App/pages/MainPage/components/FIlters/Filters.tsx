@@ -7,7 +7,6 @@ const Filters: React.FC = () => {
 
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
-    // Обработчик изменения выбранных опций
     const handleMultiDropdownChange = (newValue: Option[]) => {
         setSelectedOptions(newValue);
     };

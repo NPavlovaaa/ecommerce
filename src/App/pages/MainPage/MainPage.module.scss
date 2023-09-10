@@ -1,7 +1,19 @@
 @import "variables";
 
 .body_page{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   padding: 100px 100px $space-xl 100px;
+  align-content: center;
+
+
+  &_info{
+    display: flex;
+    width: 50%;
+    justify-items: center;
+    justify-self: center;
+  }
 
   &__body{
     width: 100%;

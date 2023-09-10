@@ -3,12 +3,13 @@ import axios from "axios";
 import styles from './Product.module.scss';
 import Text from "components/Text";
 import { useParams } from "react-router-dom";
-import Button from "../../../../../components/Button";
+import Button from "components/Button";
+import {ProductType} from "types";
 
 
 const Product: React.FC = () => {
     const {id} = useParams();
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState<ProductType | {}>({});
 
     useEffect(() =>{
         const fetch = async () => {
@@ -16,17 +17,10 @@ const Product: React.FC = () => {
                 method: 'get',
                 url: `https://api.escuelajs.co/api/v1/products/${id}`
             })
-                .then((data: object)=> {
-                    const prod: object = {
-                        id: data.data.id,
-                        title: data.data.title,
-                        images: data.data.images,
-                        description: data.data.description,
-                        price: data.data.price,
-                    }
+                .then((data: object) => {
+                    const prod: ProductType = data.data;
                     setProduct(prod);
                 })
-
         }
         fetch();
     }, [])
@@ -35,15 +29,17 @@ const Product: React.FC = () => {
     return(
         <div className={styles.product_info}>
             <div className={styles.product_info__image_block}>
-                <img src={product ? product.images : ''} className={styles.product_info__image_block__img} alt="product image"/>
+                <img src={product.images ? product.images[0] : ''} className={styles.product_info__image_block__img} alt="product image"/>
             </div>
             <div className={styles.product_info__desc}>
                 <div className={styles.product_info__desc__text}>
-                    <Text children={product ? product.title : ''} view="title"/>
-                    <Text children={product ? product.description : ''} view="p-20" color="secondary"/>
+                    <Text children={product.title ? product.title : ''} view="title"/>
+                    <div>
+                        <Text children={product.description ? product.description : ''} view="p-20" color="secondary"/>
+                    </div>
                 </div>
                 <div className={styles.product_info__desc__price}>
-                    <Text children={`$${product ? product.price : ''}`} view="title"/>
+                    <Text children={`$${product.price ? product.price : ''}`} view="title"/>
                     <div className={styles.product_info__desc__price__button}>
                         <Button children="Buy now"/>
                         <Button children="Add to cart"/>

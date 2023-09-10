@@ -4,9 +4,10 @@ import ProductCard from "components/ProductCard";
 import styles from './ProductList.module.scss';
 import Text from "components/Text";
 import Pagination from "components/Pagination/Pagination";
+import {ProductType} from "types";
 
 const ProductList: React.FC = () => {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<Array<ProductType> | []>([]);
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
@@ -35,9 +36,9 @@ const ProductList: React.FC = () => {
                 <Text view="p-20" weight="bold" color="accent">{products.length}</Text>
             </div>
             <div className={styles.main_block__list}>
-                {currentData.map((item: object) => {
+                {currentData.map((item: ProductType) => {
                     console.log(item)
-                    const getCaption: string = item.title.split(' ');
+                    const getCaption: string[] = item.title.split(' ');
                     const captionSlot: string = getCaption[getCaption.length-1];
                     return (
                        <ProductCard image={item.images} captionSlot={captionSlot} contentSlot={`${item.price} $`} {...item}/>

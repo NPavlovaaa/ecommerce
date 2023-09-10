@@ -1,9 +1,9 @@
 import styles from './Filters.module.scss';
 import {Option} from "components/MultiDropdown";
 import MultiDropdown from "components/MultiDropdown";
-import {useState} from "react";
+import React, {useState} from "react";
 
-const Filters = () => {
+const Filters: React.FC = () => {
 
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
@@ -19,7 +19,7 @@ const Filters = () => {
     ];
 
     return (
-        <>
+        <div className={styles.filter_main_block}>
             <MultiDropdown
                 options={OPTIONS}
                 value={selectedOptions}
@@ -27,7 +27,7 @@ const Filters = () => {
                 getTitle={(values: Option[]) => `Filters: ${values.map(({ value }) => value).join(', ')}`}
             />
 
-        </>
+        </div>
     );
 }
 

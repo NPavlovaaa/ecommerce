@@ -3,8 +3,9 @@ import styles from "./MainPage.module.scss"
 import Search from "./components/Search";
 import Filters from "./components/FIlters";
 import Info from "./components/Info";
+import React from "react";
 
-const MainPage = () => {
+const MainPage: React.FC = () => {
     return(
         <div className={styles.body_page}>
             <Info/>

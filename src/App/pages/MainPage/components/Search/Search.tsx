@@ -2,8 +2,9 @@ import styles from './Search.module.scss';
 import Text from "components/Text";
 import Input from "components/Input";
 import Button from "components/Button";
+import React from "react";
 
-const Search = () => {
+const Search: React.FC = () => {
 
     return(
         <div className={styles.main_block}>

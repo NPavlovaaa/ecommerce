@@ -1,16 +1,23 @@
 @import "variables";
 
+.bg_block{
+    width: 100%;
+    display: flex;
+    background-color: white;
+    padding: $space-s $space-xs;
+    justify-items: stretch;
+    gap: $space-xxs;
+    justify-content: space-between;
+}
 .input {
     display: flex;
     width: inherit;
     background-color: white;
     border: none;
-    padding: $space-s $space-xs;
     font-size: 16px;
     color: $primary;
     outline: none;
     align-items: center;
-    gap: $space-xxs;
 
     &::placeholder, &:disabled, input:focus{
         color: $secondary;
@@ -19,8 +26,6 @@
 }
 
 .label {
-    bottom: 14px;
-    transform: translateX(-140%);
     display: flex;
     height: 24px;
     width: 24px;

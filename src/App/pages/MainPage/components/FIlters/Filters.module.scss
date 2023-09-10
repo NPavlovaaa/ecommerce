@@ -1,8 +1,8 @@
 .filter_main_block{
-  display: flex;
-  width: 300px;
-  height: 52px;
-  align-items: center;
+    width: 300px;
+    display: flex;
+    flex-direction:column;
+    flex: 1;
 }
 
 

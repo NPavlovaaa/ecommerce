@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import Button from "../../../../../components/Button";
 
 
-const Product = () => {
+const Product: React.FC = () => {
     const {id} = useParams();
     const [product, setProduct] = useState({});
 
@@ -16,11 +16,11 @@ const Product = () => {
                 method: 'get',
                 url: `https://api.escuelajs.co/api/v1/products/${id}`
             })
-                .then((data)=> {
-                    const prod = {
+                .then((data: object)=> {
+                    const prod: object = {
                         id: data.data.id,
                         title: data.data.title,
-                        image: data.data.images[0],
+                        images: data.data.images,
                         description: data.data.description,
                         price: data.data.price,
                     }
@@ -31,12 +31,11 @@ const Product = () => {
         fetch();
     }, [])
 
-    console.log(product)
 
     return(
         <div className={styles.product_info}>
             <div className={styles.product_info__image_block}>
-                <img src={product ? product.image : ''} className={styles.product_info__image_block__img} alt="product image"/>
+                <img src={product ? product.images : ''} className={styles.product_info__image_block__img} alt="product image"/>
             </div>
             <div className={styles.product_info__desc}>
                 <div className={styles.product_info__desc__text}>

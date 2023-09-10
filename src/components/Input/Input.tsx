@@ -32,10 +32,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       }
 
       return (
-          <>
+          <div className={styles.bg_block}>
             <input placeholder={placeholder} className={styles.input} type="text" value={value} disabled={disabled} onChange={handleChange} {...props}/>
             <label className={styles.label}>{afterSlot ? afterSlot : null}</label>
-          </>
+          </div>
       );
     });
 

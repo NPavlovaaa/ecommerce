@@ -5,9 +5,10 @@ import Cart from "../../assets/Cart.svg";
 import User from "../../assets/User.svg";
 import Text from "../Text";
 import {NavLink} from "react-router-dom";
+import React from "react";
 
 
-const Header = () => {
+const Header: React.FC = () => {
     return(
         <div className={styles.main_block}>
             <div className={styles.main_block__logo}>

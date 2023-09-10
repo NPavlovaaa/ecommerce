@@ -1,10 +1,10 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import ProductCard from "components/ProductCard";
 import styles from './RelatedProducts.module.scss';
 import Text from "components/Text";
 
-const RelatedProducts = ({category}) => {
+const RelatedProducts: React.FC = ({category}) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -23,7 +23,6 @@ const RelatedProducts = ({category}) => {
     }, [])
 
 
-
     return(
         <div className={styles.related_main_block}>
             <div className={styles.related_main_block__title_list}>
@@ -32,8 +31,8 @@ const RelatedProducts = ({category}) => {
             <div className={styles.related_main_block__list}>
                 {products.map(item => {
                     console.log(item)
-                    const getCaption = item.title.split(' ');
-                    const captionSlot = getCaption[getCaption.length-1];
+                    const getCaption: string = item.title.split(' ');
+                    const captionSlot: string = getCaption[getCaption.length-1];
                     return (
                         <ProductCard captionSlot={captionSlot} contentSlot={`${item.price} $`} {...item}/>
                     )

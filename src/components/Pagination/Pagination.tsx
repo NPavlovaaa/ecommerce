@@ -46,9 +46,7 @@ const Pagination = props => {
                 }
 
                 return (
-                    <li className={classnames(styles.pagination_item, {
-                            selected: pageNumber === currentPage
-                        })}
+                    <li className={classnames(styles.pagination_item, pageNumber === currentPage ? styles.selected : null)}
                         onClick={() => onPageChange(pageNumber)}
                     >
                         {pageNumber}

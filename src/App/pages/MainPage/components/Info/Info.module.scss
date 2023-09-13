@@ -1,9 +1,7 @@
 @import "variables";
 
 .main_block{
-  display: flex;
-  flex-direction: column;
-  gap: $space-m;
+  @include custom_display(column, none, $space-m);
   flex-shrink: 0;
   margin-bottom: $space-l;
   padding: 0 25%;

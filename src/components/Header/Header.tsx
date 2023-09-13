@@ -1,11 +1,11 @@
 import styles from "./Header.module.scss";
-import Logo from "../../assets/Logo.svg";
-import Lalasia from "../../assets/Lalasia.svg";
-import Cart from "../../assets/Cart.svg";
-import User from "../../assets/User.svg";
 import Text from "../Text";
 import {Link, NavLink} from "react-router-dom";
 import React from "react";
+import LogoIcon from "../Icons/LogoIcon";
+import TitleIcon from "../Icons/TitleIcon";
+import UserIcon from "../Icons/UserIcon";
+import CartIcon from "../Icons/CartIcon";
 
 
 const Header: React.FC = () => {
@@ -13,8 +13,8 @@ const Header: React.FC = () => {
         <div className={styles.main_block}>
             <Link to="/">
                 <div className={styles.main_block__logo}>
-                    <img src={Logo} alt="logo image"/>
-                    <img src={Lalasia} alt="logo text"/>
+                    <LogoIcon width={42} height={42}/>
+                    <TitleIcon width={77} height={20}/>
                 </div>
             </Link>
             <div className={styles.main_block__menu}>
@@ -37,8 +37,8 @@ const Header: React.FC = () => {
                 </ul>
             </div>
             <div className={styles.main_block_account}>
-                <img src={Cart} alt="Cart icon"/>
-                <img src={User} alt="User icon"/>
+                <CartIcon width={30} height={30}/>
+                <UserIcon width={30} height={30}/>
             </div>
         </div>
     )

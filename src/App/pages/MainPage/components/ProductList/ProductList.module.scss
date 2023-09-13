@@ -1,28 +1,24 @@
 @import "variables";
 
 .main_block{
-  display: flex;
-  flex-direction: column;
-  gap: $space-l;
-  justify-content: center;
+  @include custom_display(column, center, $space-l);
 
   &__title_list{
-    display: flex;
+    @include custom_display(none, none, $space-m);
     align-items: center;
-    gap: $space-m;
   }
 
   &__list{
-    display: flex;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 360px));
     justify-content: space-between;
-    flex-wrap: wrap;
+    align-content: space-between;
     gap: 30px;
-    align-items: stretch;
   }
 
   .pagination{
-    display: flex;
-    justify-content: center;
+    @include custom_display(none, center);
     width: 100%;
   }
 }

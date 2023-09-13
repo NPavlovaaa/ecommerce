@@ -12,18 +12,19 @@ const Product: React.FC = () => {
     const [product, setProduct] = useState<ProductType | {}>({});
 
     useEffect(() =>{
-        const fetch = async () => {
-            await axios({
-                method: 'get',
-                url: `https://api.escuelajs.co/api/v1/products/${id}`
-            })
-                .then((data: object) => {
-                    const prod: ProductType = data.data;
-                    setProduct(prod);
-                })
-        }
-        fetch();
+        fetch()
     }, [])
+
+    const fetch = async () => {
+        await axios({
+            method: 'get',
+            url: `https://api.escuelajs.co/api/v1/products/${id}`
+        })
+            .then((data: object) => {
+                const prod: ProductType = data.data;
+                setProduct(prod);
+            })
+    }
 
 
     return(

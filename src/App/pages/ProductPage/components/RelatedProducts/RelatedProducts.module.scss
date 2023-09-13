@@ -1,26 +1,20 @@
 @import "variables";
 
-.related_main_block{
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
+.related_main_block {
+  @include custom_display(column, none, $space-l);
+  margin-top: $space-s;
   align-items: flex-start;
-  gap: $space-l;
 
   &__title_list{
-    display: flex;
+    @include custom_display(none, none, $space-m);
     align-items: center;
-    gap: $space-m;
   }
 
   &__list{
-    display: flex;
-    justify-content: space-between;
+    @include custom_display(none, space-between, 30px);
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 30px;
   }
-
 }
 
 

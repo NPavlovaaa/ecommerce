@@ -8,8 +8,7 @@ const Info: React.FC = () => {
         <div className={styles.main_block}>
             <Text view="title" weight="bold" children="Products"/>
             <Text view="p-20" color="secondary"
-                  children=" We display products based on the latest products we have,
-                if you want to see our old products please enter the name of the item"/>
+                  children="We&nbsp;display products based on&nbsp;the latest products we&nbsp;have, if&nbsp;you want to&nbsp;see our old products please enter the name of&nbsp;the item"/>
         </div>
     )
 }

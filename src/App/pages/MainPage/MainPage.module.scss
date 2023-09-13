@@ -1,12 +1,10 @@
 @import "variables";
 
 .body_page{
-  display: flex;
+  @include custom_display(column, none);
   flex-wrap: wrap;
-  flex-direction: column;
   padding: 100px 100px $space-xl 100px;
   align-content: center;
-
 
   &_info{
     display: flex;
@@ -17,16 +15,11 @@
 
   &__body{
     width: 100%;
-    display: inline-flex;
-    flex-direction: column;
-    gap: $space-xl;
-
+    @include custom_display(column, none, $space-xl);
 
     &__tools{
-      display: flex;
-      flex-direction: column;
+      @include custom_display(column, none, $space-m);
       align-items: flex-start;
-      gap: $space-m;
     }
   }
 }

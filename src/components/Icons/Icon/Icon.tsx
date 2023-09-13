@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from "./Icon.module.scss";
+import classNames from classnames;
 
 export type IconProps = {
     className?: string;
@@ -9,15 +11,15 @@ export type IconProps = {
 };
 
 const Icon: React.FC<IconProps> = ({
-                                       className,
-                                       width = 24,
-                                       height = 24,
-                                       color = 'inherit',
-                                       icon,
-                                   }) => {
+   className,
+   width,
+   height,
+   color = 'inherit',
+   icon,
+}) => {
 
     return (
-        <div className={`div-icon ${className}`} style={{ width, height, color }}>
+        <div className={classNames(styles.block, className)} style={{ width, height, color }}>
             {icon}
         </div>
     );

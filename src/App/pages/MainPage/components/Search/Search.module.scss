@@ -1,16 +1,13 @@
 @import "variables";
 
 .main_block{
+  @include custom_display(none, space-between, $space-xl);
   height: 52px;
-  display: flex;
   width: 100%;
-  justify-content: space-between;
-  gap: $space-xl;
 }
 
 .input_block{
-  display: flex;
-  flex-direction:column;
+  @include custom_display(column, none);
   flex: 1;
 }
 

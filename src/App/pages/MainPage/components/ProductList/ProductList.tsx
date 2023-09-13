@@ -11,18 +11,18 @@ const ProductList: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
-        const fetch = async () => {
-            await axios({
-                method: 'get',
-                url: 'https://api.escuelajs.co/api/v1/products'
-            })
-                .then((data: object)=> setProducts(data.data));
-
-        }
         fetch();
     }, [])
 
-    let pageSize = 9;
+    const fetch = async () => {
+        await axios({
+            method: 'get',
+            url: 'https://api.escuelajs.co/api/v1/products'
+        })
+            .then((data: object)=> setProducts(data.data));
+    }
+
+    let pageSize = 6;
     const currentData = useMemo(() => {
         const firstPageIndex: number = (currentPage - 1) * pageSize;
         const lastPageIndex: number = firstPageIndex + pageSize;
@@ -37,7 +37,6 @@ const ProductList: React.FC = () => {
             </div>
             <div className={styles.main_block__list}>
                 {currentData.map((item: ProductType) => {
-                    console.log(item)
                     const getCaption: string[] = item.title.split(' ');
                     const captionSlot: string = getCaption[getCaption.length-1];
                     return (

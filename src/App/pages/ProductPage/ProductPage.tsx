@@ -1,10 +1,10 @@
 import styles from "./ProductPage.module.scss"
 import Text from "components/Text";
 import React from "react";
-import Arrow from "../../../assets/arrow-right.svg";
 import Product from "./components/Product";
 import RelatedProducts from "./components/RelatedProducts";
 import {Link} from "react-router-dom";
+import ArrowBackIcon from "../../../components/Icons/ArrowBackIcon";
 
 const ProductPage: React.FC = () => {
 
@@ -12,7 +12,7 @@ const ProductPage: React.FC = () => {
         <div className={styles.product_body_page}>
             <Link to="/" className={styles.link}>
                 <div className={styles.product_body_page__back}>
-                    <img src={Arrow} className={styles.arrow_back} alt="button back icon"/>
+                    <ArrowBackIcon width={32} height={32} className={styles.arrow_back}/>
                     <Text view="p-20" children="Back"/>
                 </div>
             </Link>

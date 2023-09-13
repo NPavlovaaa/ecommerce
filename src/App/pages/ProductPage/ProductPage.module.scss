@@ -1,10 +1,8 @@
 @import "variables";
 
 .product_body_page{
-  display: flex;
-  flex-direction: column;
+  @include custom_display(column, none, $space-l);
   padding: 60px 100px 48px 100px;
-  gap: $space-l;
 
   .link{
     text-decoration: none;
@@ -12,17 +10,15 @@
   }
 
   &__back{
-    display: flex;
-    gap: $space-xs;
+    @include custom_display(none, none, $space-xs);
     height: 48px;
     align-items: center;
     cursor: pointer;
 
     .arrow_back {
-      display: flex;
+      @include custom_display(none, center);
       width: 32px;
       height: 32px;
-      justify-content: center;
       align-items: center;
     }
   }

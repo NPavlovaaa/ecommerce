@@ -2,10 +2,8 @@
 
 button, .loading-only:hover {
     border: none;
-    display: flex;
-    justify-content: center;
+    @include custom_display(none, center, $space-xxs);
     align-items: center;
-    gap: $space-xxs;
     padding: 14px 20px;
     background-color: $accent;
     color: white;
@@ -17,11 +15,13 @@ button, .loading-only:hover {
     &:hover {
         background-color: $accent-hover;
         color: white;
+        transition: all 0.3s ease-in-out;
     }
 
     &:disabled:not(.loading-only), &:disabled:hover:not(.loading-only) {
         background-color: $light-white;
         color: white;
+        transition: all 0.3s ease-in-out;
     }
 
     &:active {

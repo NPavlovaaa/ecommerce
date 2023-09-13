@@ -2,12 +2,10 @@
 
 .bg_block{
     width: 100%;
-    display: flex;
+    @include custom_display(none, space-between, $space-xxs);
     background-color: white;
     padding: $space-s $space-xs;
     justify-items: stretch;
-    gap: $space-xxs;
-    justify-content: space-between;
 }
 .input {
     display: flex;

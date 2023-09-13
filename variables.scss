@@ -12,3 +12,19 @@ $space-s: 16px;
 $space-m: 24px;
 $space-l: 32px;
 $space-xl: 48px;
+
+// mixins
+@mixin custom_display($direction: none, $justify-content: none, $gap: none){
+  display: flex;
+
+  @if($direction != none){
+    flex-direction: $direction;
+  }
+  @if($justify-content != none){
+    justify-content: $justify-content;
+  }
+
+  @if($gap != none){
+    gap: $gap;
+  }
+}

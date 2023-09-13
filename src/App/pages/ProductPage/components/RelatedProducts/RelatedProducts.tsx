@@ -8,20 +8,20 @@ const RelatedProducts: React.FC = ({category}) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const fetch = async () => {
-            await axios({
-                method: 'get',
-                url: 'https://api.escuelajs.co/api/v1/products'
-            })
-                .then((data: any) => {
-                    const related: Array<object> = data.data.filter(item => item.category.id === category).slice(0, 2)
-                    setProducts(related)
-                });
-
-        }
         fetch();
     }, [])
 
+    const fetch = async () => {
+        await axios({
+            method: 'get',
+            url: 'https://api.escuelajs.co/api/v1/products'
+        })
+            .then((data: any) => {
+                const related: Array<object> = data.data.filter(item => item.category.id === category).slice(0, 2)
+                setProducts(related)
+            });
+
+    }
 
     return(
         <div className={styles.related_main_block}>
@@ -30,7 +30,7 @@ const RelatedProducts: React.FC = ({category}) => {
             </div>
             <div className={styles.related_main_block__list}>
                 {products.map(item => {
-                    console.log(item)
+                    // console.log(item)
                     const getCaption: string = item.title.split(' ');
                     const captionSlot: string = getCaption[getCaption.length-1];
                     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./Icon.module.scss";
-import classNames from classnames;
+import classNames from 'classnames';
 
 export type IconProps = {
     className?: string;

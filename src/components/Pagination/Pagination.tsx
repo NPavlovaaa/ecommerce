@@ -42,11 +42,11 @@ const Pagination = props => {
             </li>
             {paginationRange.map(pageNumber => {
                 if (pageNumber === DOTS) {
-                    return <li className={styles.pagination_item}>&#8230;</li>;
+                    return <li key={pageNumber} className={styles.pagination_item}>&#8230;</li>;
                 }
 
                 return (
-                    <li className={classnames(styles.pagination_item, pageNumber === currentPage ? styles.selected : null)}
+                    <li key={pageNumber} className={classnames(styles.pagination_item, pageNumber === currentPage ? styles.selected : null)}
                         onClick={() => onPageChange(pageNumber)}
                     >
                         {pageNumber}

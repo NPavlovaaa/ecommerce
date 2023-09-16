@@ -3,9 +3,9 @@ import ProductCard from "components/ProductCard";
 import styles from './ProductList.module.scss';
 import Text from "components/Text";
 import Pagination from "components/Pagination/Pagination";
-import {ProductType} from "types";
 import {observer, useLocalObservable} from "mobx-react-lite";
-import ProductStore from "../../../../../store/ProductStore";
+import ProductStore from "store/ProductStore";
+import {ProductModel} from "store/models/products/Product";
 
 
 const ProductList: React.FC = observer(() => {
@@ -31,11 +31,11 @@ const ProductList: React.FC = observer(() => {
                 <Text view="p-20" weight="bold" color="accent">{productStore.productList.length}</Text>
             </div>
             <div className={styles.main_block__list}>
-                {currentData.map((item: ProductType) => {
+                {currentData.map((item: ProductModel) => {
                     const getCaption: string[] = item.title.split(' ');
                     const captionSlot: string = getCaption[getCaption.length-1];
                     return (
-                       <ProductCard image={item.images} captionSlot={captionSlot} contentSlot={`${item.price} $`} {...item}/>
+                       <ProductCard key={item.id} image={item.images} captionSlot={captionSlot} contentSlot={`${item.price} $`} {...item}/>
                     )
                 })}
             </div>

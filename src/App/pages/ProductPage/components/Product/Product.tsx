@@ -1,31 +1,11 @@
-import React, {useEffect, useState} from "react";
-import axios from "axios";
+import React from "react";
 import styles from './Product.module.scss';
 import Text from "components/Text";
-import { useParams } from "react-router-dom";
 import Button from "components/Button";
-import {ProductType} from "types";
+import {observer} from "mobx-react";
 
 
-const Product: React.FC = () => {
-    const {id} = useParams();
-    const [product, setProduct] = useState<ProductType | {}>({});
-
-    useEffect(() =>{
-        fetch()
-    }, [])
-
-    const fetch = async () => {
-        await axios({
-            method: 'get',
-            url: `https://api.escuelajs.co/api/v1/products/${id}`
-        })
-            .then((data: object) => {
-                const prod: ProductType = data.data;
-                setProduct(prod);
-            })
-    }
-
+const Product: React.FC = observer(({product}) => {
 
     return(
         <div className={styles.product_info}>
@@ -49,6 +29,6 @@ const Product: React.FC = () => {
             </div>
         </div>
     )
-}
+})
 
 export default Product;

@@ -32,3 +32,5 @@ export const normalizeProduct = (from: ProductApi): ProductModel => ({
     title: from.title,
     updatedAt: new Date(from.updatedAt)
 })
+
+export const getInitialModel = (): ProductModel => <ProductModel>({});

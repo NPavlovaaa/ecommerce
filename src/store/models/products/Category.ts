@@ -14,6 +14,7 @@ export type CategoryModel = {
     updatedAt: Date;
 }
 
+
 export const normalizeCategory = (from: CategoryApi): CategoryModel => ({
     id: from.id,
     name: from.name,
@@ -21,3 +22,5 @@ export const normalizeCategory = (from: CategoryApi): CategoryModel => ({
     creationAt: new Date(from.creationAt),
     updatedAt: new Date(from.updatedAt)
 })
+
+export const getInitialCategoryModel = (): CategoryModel => <CategoryModel>({});

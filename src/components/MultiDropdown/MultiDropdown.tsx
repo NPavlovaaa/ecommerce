@@ -5,17 +5,9 @@ import styles_input from 'components/Input/Input.module.scss';
 import ArrowDownIcon from '../icons/ArrowDownIcon';
 
 export type Option = {
-    key: string;
-    value: string;
+    id: string;
+    name: string;
 };
-
-
-const OPTIONS = [
-    {key: 'msk', value: 'Moscow'},
-    {key: 'spb', value: 'Saint Petersburg'},
-    {key: 'ekb', value: 'Ekaterinburg'},
-];
-
 
 export type MultiDropdownProps = {
     className?: string;
@@ -27,20 +19,22 @@ export type MultiDropdownProps = {
 };
 
 const MultiDropdown: React.FC<MultiDropdownProps> = ({
-                                                         className,
-                                                         options = OPTIONS,
-                                                         value,
-                                                         onChange,
-                                                         disabled: initialDisabled,
-                                                         getTitle,
-                                                         ...props
-                                                     }) => {
+     className,
+     options = [],
+     value,
+     onChange,
+     disabled: initialDisabled,
+     getTitle,
+     ...props
+ }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [filteredOptions, setFilteredOptions] = useState(options);
     const [disabled, setDisabled] = useState(initialDisabled);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const [isFocused, setIsFocused] = useState(false);
+
+
 
     useEffect(() => {
         if (isOpen) {
@@ -63,20 +57,21 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
         setDisabled(initialDisabled);
     }, [initialDisabled]);
 
+
     const handleInputChange = (newValue: string) => {
         if (disabled) {
             return;
         }
         const filtered = options.filter((option) =>
-            option.value.toLowerCase().includes(newValue.toLowerCase())
+            option.name.toLowerCase().includes(newValue.toLowerCase())
         );
         setFilteredOptions(filtered);
     };
 
     const handleOptionClick = (clickedOption: Option) => {
-        const isSelected = value.some((option) => option.key === clickedOption.key);
+        const isSelected = value.some((option) => option.id === clickedOption.id);
         if (isSelected) {
-            onChange(value.filter((option) => option.key !== clickedOption.key));
+            onChange(value.filter((option) => option.id !== clickedOption.id));
         } else {
             onChange([...value, clickedOption]);
         }
@@ -116,14 +111,14 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
                 <ul className={styles.multi_dropdown__ul}>
                     {filteredOptions?.map((option) => (
                         <li
-                            key={option.key}
-                            className={`${styles.multi_dropdown__li} ${value.some((selected) => selected.key === option.key)
+                            key={option.id}
+                            className={`${styles.multi_dropdown__li} ${value.some((selected) => selected.id === option.id)
                                     ? styles.selected
                                     : ''
                             }`}
                             onClick={() => handleOptionClick(option)}
                         >
-                            {option.value}
+                            {option.name}
                         </li>
                     ))}
                 </ul>

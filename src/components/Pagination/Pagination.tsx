@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { usePagination, DOTS } from '../../utils/pagination.hook.';
+import { usePagination, DOTS } from 'utils/pagination.hook.';
 import styles from './Pagination.module.scss';
 
 const Pagination = props => {
@@ -46,7 +46,7 @@ const Pagination = props => {
                 }
 
                 return (
-                    <li key={pageNumber} className={classnames(styles.pagination_item, pageNumber === currentPage ? styles.selected : null)}
+                    <li className={classnames(styles.pagination_item, pageNumber === currentPage ? styles.selected : null)}
                         onClick={() => onPageChange(pageNumber)}
                     >
                         {pageNumber}

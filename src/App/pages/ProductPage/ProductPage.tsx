@@ -4,14 +4,15 @@ import React, {useEffect} from "react";
 import Product from "./components/Product";
 import RelatedProducts from "./components/RelatedProducts";
 import {Link} from "react-router-dom";
-import ArrowBackIcon from "../../../components/Icons/ArrowBackIcon";
-import ProductStore from "../../../store/ProductStore";
+import ArrowBackIcon from "components/Icons/ArrowBackIcon";
 import {observer, useLocalObservable} from "mobx-react";
 import { useParams } from "react-router-dom";
+import ProductStore from "store/ProductStore";
+
 
 const ProductPage: React.FC = observer(() => {
     const {id} = useParams();
-    const productStore = useLocalObservable(() => new ProductStore());
+    const productStore = useLocalObservable(() => new ProductStore())
 
     useEffect(() =>{
         productStore.getProductItem(id);

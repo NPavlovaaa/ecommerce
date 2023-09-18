@@ -3,10 +3,12 @@ import styles from "./MainPage.module.scss"
 import Search from "./components/Search";
 import Filters from "./components/FIlters";
 import Info from "./components/Info";
-import React from "react";
+import React, {useState} from "react";
 
 
 const MainPage: React.FC = () => {
+    const [search, setSearch] = useState('');
+
     return(
         <div className={styles.body_page}>
             <div>

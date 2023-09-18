@@ -6,7 +6,6 @@ import Pagination from "components/Pagination/Pagination";
 import {observer, useLocalObservable} from "mobx-react-lite";
 import {ProductModel} from "store/models/products/Product";
 import ProductStore from "store/ProductStore";
-import FilterStore from "store/FilterStore";
 
 
 const ProductList: React.FC = observer(() => {
@@ -19,22 +18,12 @@ const ProductList: React.FC = observer(() => {
 
     const products = productStore.productList;
 
-    const filteredProductList = useMemo(() => {
-        const filteredProductList = products.slice();
-        setCurrentPage(1);
-        if(FilterStore.activeCategory.length === 0){
-            return filteredProductList;
-        }else{
-            return filteredProductList.filter(item => FilterStore.activeCategory.some(filter => item.category.id === filter.id));
-        }
-    }, [products, FilterStore.activeCategory])
-
     let pageSize = 6;
     const currentData = useMemo(() => {
         const firstPageIndex: number = (currentPage - 1) * pageSize;
         const lastPageIndex: number = firstPageIndex + pageSize;
-        return filteredProductList.slice(firstPageIndex, lastPageIndex);
-    }, [currentPage, filteredProductList]);
+        return products.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, products]);
 
     return(
         <div className={styles.main_block}>
@@ -48,6 +37,7 @@ const ProductList: React.FC = observer(() => {
                     const captionSlot: string = getCaption[getCaption.length-1];
                     return (
                        <ProductCard image={images}
+                                    title={title}
                                     captionSlot={captionSlot}
                                     contentSlot={`${price} $`}
                                     description={description}
@@ -59,10 +49,10 @@ const ProductList: React.FC = observer(() => {
             </div>
             <div className={styles.pagination}>
                 <Pagination
-                    currentPage = {currentPage}
-                    totalCount = {filteredProductList.length}
-                    pageSize = {pageSize}
-                    onPageChange = {page => setCurrentPage(page)}
+                    currentPage={currentPage}
+                    totalCount={products.length}
+                    pageSize={pageSize}
+                    onPageChange={page => setCurrentPage(page)}
                 />
             </div>
         </div>

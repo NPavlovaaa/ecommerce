@@ -1,17 +1,18 @@
 @import "variables";
 
 .multi_dropdown {
-    display: flex;
-    align-items: center;
+    width: 300px;
 
     &__ul {
         background-color: white;
-        width: 300px;
-        margin-top: 58px;
+        width: inherit;
+        margin: 0;
         padding: 0;
         box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
         position: absolute;
         text-align: center;
+        height: calc(47px * 5);
+        overflow-y: scroll;
     }
 
     &__li {

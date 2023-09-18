@@ -47,7 +47,7 @@ class FilterStore {
     }
 
     changeActiveCategory(options: Option[]){
-        this._activeCategory = toJS(options);
+        this._activeCategory = options;
     }
 
     async getCategoriesList(): Promise<void> {

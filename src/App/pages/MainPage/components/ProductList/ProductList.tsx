@@ -7,7 +7,7 @@ import {observer, useLocalObservable} from "mobx-react-lite";
 import {ProductModel} from "store/models/products/Product";
 import ProductStore from "store/ProductStore";
 import {useNavigate} from "react-router-dom";
-import rootStore from "store/RootStore";
+import rootStore from "store/RootStore/instance";
 import {Option} from "components/MultiDropdown";
 
 const ProductList: React.FC = observer(() => {
@@ -21,7 +21,7 @@ const ProductList: React.FC = observer(() => {
 
     useEffect(() =>{
         productStore.getProductList();
-    }, [productStore])
+    }, [productStore, rootStore.query.searchQuery, rootStore.query.selectedFilters])
 
     useEffect(() => {
         if (urlSearchParams.get("page")) {

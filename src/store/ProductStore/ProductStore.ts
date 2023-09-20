@@ -14,7 +14,7 @@ import {action, computed, makeObservable, observable, runInAction} from "mobx";
 import {Meta} from "utils/meta";
 import axios from "axios";
 
-import rootStore from "../RootStore";
+import rootStore from "../RootStore/instance";
 
 const REACT_APP_URL: string = 'https://api.escuelajs.co/api/v1';
 type PrivateFields = '_productList' | '_meta' | '_productItem';
@@ -42,19 +42,7 @@ export default class ProductStore{
     }
 
     get productList(): ProductModel[] {
-        let searchedProductList = linearizeCollection(this._productList).slice()
-        if (rootStore.query.searchQuery === '' && rootStore.query.selectedFilters.length === 0){
-            return searchedProductList
-        } else if(rootStore.query.searchQuery !== '' && rootStore.query.selectedFilters.length > 0){
-            return searchedProductList.filter(item =>
-                item.title.toLowerCase().includes(rootStore.query.searchQuery.toLowerCase()) &&
-                rootStore.query.selectedFilters.some(filter => item.category.id === filter.id)
-            );
-        } else if(rootStore.query.searchQuery !== ''){
-           return searchedProductList.filter(item => item.title.toLowerCase().includes(rootStore.query.searchQuery.toLowerCase()))
-        } else{
-            return searchedProductList.filter(item => rootStore.query.selectedFilters.some(filter => item.category.id === filter.id));
-        }
+        return linearizeCollection(this._productList)
     }
 
     get productItem(): ProductModel {
@@ -69,11 +57,19 @@ export default class ProductStore{
         return this._meta;
     }
 
-    async getProductList(): Promise<void> {
+    async getProductList(
+        title: string = rootStore.query.searchQuery,
+        categoryId: string = rootStore.query.selectedFilters.map(item => item.id)[0]
+    ): Promise<void> {
         this._meta = Meta.loading;
         this._productList = getInitialCollectionModel();
 
-        const response = await axios.get<ProductApi[]>(`${REACT_APP_URL}/products`);
+        const response = await axios.get<ProductApi[]>(`${REACT_APP_URL}/products/`, {
+            params: {
+                title: title,
+                categoryId: categoryId
+            }
+        });
 
         runInAction(() => {
             if (response.status === 200) {

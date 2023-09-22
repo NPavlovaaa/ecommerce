@@ -37,7 +37,9 @@ const Header: React.FC = () => {
                 </ul>
             </div>
             <div className={styles.main_block_account}>
-                <CartIcon width={30} height={30}/>
+                <Link to="/cart">
+                    <CartIcon width={30} height={30}/>
+                </Link>
                 <UserIcon width={30} height={30}/>
             </div>
         </div>

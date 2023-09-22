@@ -1,9 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import './App.scss'
 import MainPage from "./pages/MainPage";
 import Header from "../components/Header";
 import ProductPage from "./pages/ProductPage";
-
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
@@ -12,6 +11,7 @@ function App() {
           <Routes>
               <Route path="/" element={<MainPage />}/>
               <Route path="/product/:id" element={<ProductPage />}/>
+              <Route path="/cart" element={<CartPage/>}/>
           </Routes>
       </>
   )

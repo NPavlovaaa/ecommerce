@@ -9,9 +9,12 @@ import ProductStore from "store/ProductStore";
 import {useNavigate} from "react-router-dom";
 import rootStore from "store/RootStore/instance";
 import {Option} from "components/MultiDropdown";
+import Spinner from "components/Spinner/Spinner";
 
 const ProductList: React.FC = observer(() => {
     const productStore = useLocalObservable(() => new ProductStore());
+    const cartStore = rootStore.cart;
+    const meta = productStore.meta;
     const navigate = useNavigate();
     const currentPage = rootStore.query.currentPage;
     const searchQuery = rootStore.query.searchQuery;
@@ -28,10 +31,10 @@ const ProductList: React.FC = observer(() => {
             rootStore.query.setPage(parseInt(urlSearchParams.get("page") as string));
         }
         if (urlSearchParams.get("search")) {
-            rootStore.query.setSearchQuery(urlSearchParams.get("search"));
+            rootStore.query.setSearchQuery(urlSearchParams.get("search") as string);
         }
         if (urlSearchParams.get("filters")) {
-            rootStore.query.setFilters(filtersFromStringToOption(urlSearchParams.get("filters") as string));
+            rootStore.query.setFilters(filtersFromStringToOption(urlSearchParams.get("filters")));
         }
     }, []);
 
@@ -50,7 +53,7 @@ const ProductList: React.FC = observer(() => {
         const filtersAsString = filters.split(',');
         return rootStore.query.categoryList
             .filter((category) => filtersAsString
-                .some((filterKey) => category.key === parseInt(filterKey)))
+                .some((filterKey) => category.id === parseInt(filterKey)))
     }
 
     function filtersFromOptionToString(filters: Option[]): string {
@@ -66,23 +69,30 @@ const ProductList: React.FC = observer(() => {
         return products.slice(firstPageIndex, lastPageIndex);
     }, [currentPage, products]);
 
+    const addToCart = (id: number) => {
+        cartStore.setKeyCartList(id);
+    }
+
     return(
         <div className={styles.main_block}>
             <div className={styles.main_block__title_list}>
                 <Text view="title" weight="bold" className=''>Total Product</Text>
                 <Text view="p-20" weight="bold" color="accent">{products.length}</Text>
             </div>
+            {meta === 'loading' ? <Spinner/> : null}
             <div className={styles.main_block__list}>
                 {currentData.map(({title, images, price, description, id}: ProductModel) => {
+                    // console.log(images)
                     const getCaption: string[] = title.split(' ');
                     const captionSlot: string = getCaption[getCaption.length-1];
                     return (
-                       <ProductCard image={images}
+                       <ProductCard images={images}
                                     title={title}
                                     captionSlot={captionSlot}
                                     contentSlot={`${price} $`}
                                     description={description}
-                                    id={id}
+                                    onClick={() => navigate(`/product/${id}`)}
+                                    actionSlot={() => addToCart(id)}
                        />
                     )
                 })}

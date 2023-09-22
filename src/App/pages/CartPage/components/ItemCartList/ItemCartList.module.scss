@@ -1,0 +1,94 @@
+@import "variables";
+
+.item_cart_list{
+  @include custom_display(none, start, $space-m);
+  padding: $space-m $space-l;
+  background-color: white;
+}
+
+.text_block{
+  @include custom_display(column, space-between, $space-m);
+  flex-basis: 60%;
+
+  &_text{
+    @include custom_display(column, start, $space-s);
+
+    &_desc{
+      color: $secondary;
+    }
+  }
+
+  &_button{
+    @include custom_display(none, start, $space-s);
+
+    &_fav{
+      background-color: transparent;
+      cursor: pointer;
+      color: $accent;
+      padding: 0;
+
+      &:hover{
+        background-color: transparent;
+        color: $accent;
+      }
+    }
+
+    &_delete{
+      color: $secondary;
+      background-color: transparent;
+      padding: 0;
+      cursor: pointer;
+
+      &:hover{
+        background-color: transparent;
+        color: $secondary;
+      }
+    }
+  }
+}
+
+.image_block {
+  @include custom_display(none, center);
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+  background-color: $light-white;
+  align-items: center;
+
+  &__img {
+    box-sizing: border-box;
+    max-height: 100%;
+    max-width: 100%;
+    background-color: $light-white;
+    flex-shrink: 0;
+  }
+}
+
+.count_block{
+  @include custom_display(none, end, $space-xxs);
+  height: 35px;
+  flex-basis: 20%;
+  align-items: center;
+
+  &_change{
+    background-color: $light-white;
+    border-radius: 5px;
+    padding: $space-xxs;
+    color: $primary;
+  }
+
+  &_count{
+    padding: $space-xs;
+  }
+}
+
+.price_block{
+  @include custom_display(none, end, $space-xxs);
+  height: 35px;
+  flex-basis: 10%;
+  align-items: start;
+
+  &_price{
+    justify-self: end;
+  }
+}

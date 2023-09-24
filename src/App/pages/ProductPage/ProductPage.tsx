@@ -16,7 +16,6 @@ const ProductPage: React.FC = observer(() => {
 
     useEffect(() =>{
         productStore.getProductItem(id);
-        productStore.getProductList();
     }, [productStore])
 
     return(

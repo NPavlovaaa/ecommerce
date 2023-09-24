@@ -41,6 +41,11 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
         setDisabled(initialDisabled);
     }, [initialDisabled]);
 
+    const handleClick = (option) => {
+        setIsOpen(false);
+        onChange(option);
+    }
+
     return (
         <div className={`${styles.multi_dropdown} ${className}`}>
             <Input
@@ -57,7 +62,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
                         <li
                             key={option.id}
                             className={`${styles.multi_dropdown__li} ${value && value.id === option.id ? styles.selected : ''}`}
-                            onClick={() => onChange(option)}
+                            onClick={() => handleClick(option)}
                         >
                             {option.name}
                         </li>

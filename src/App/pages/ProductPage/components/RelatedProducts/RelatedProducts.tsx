@@ -12,15 +12,22 @@ const RelatedProducts: React.FC = observer(({products}) => {
             <div className={styles.related_main_block__title_list}>
                 <Text view="title" weight="bold">Related Items</Text>
             </div>
-            <div className={styles.related_main_block__list}>
-                {products && products.map((item: ProductModel) => {
-                    const getCaption: string[] = item.title.split(' ');
-                    const captionSlot: string = getCaption[getCaption.length-1];
-                    return (
-                        <ProductCard key={item.id} captionSlot={captionSlot} contentSlot={`${item.price} $`} {...item}/>
-                    )
-                })}
-            </div>
+            {products ?
+                <div className={styles.related_main_block__list}>
+                    {products.map((item: ProductModel) => {
+                        const getCaption: string[] = item.title.split(' ');
+                        const captionSlot: string = getCaption[getCaption.length-1];
+                        return (
+                            <ProductCard key={item.id} captionSlot={captionSlot} contentSlot={`${item.price} $`} {...item}/>
+                        )
+                    })}
+                </div>
+                :
+                <div >
+                    <Text children="Related products not found :(" view="p-20"/>
+                </div>
+            }
+
         </div>
     )
 })

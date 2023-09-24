@@ -69,22 +69,22 @@ const ProductList: React.FC = observer(() => {
             </div>
             {meta === 'loading' ? <Spinner/> : null}
             {products.length > 0 ?
-            <div className={styles.main_block__list}>
-                {products.map(({title, images, price, description, id}: ProductModel) => {
-                    const getCaption: string[] = title.split(' ');
-                    const captionSlot: string = getCaption[getCaption.length-1];
-                    return (
-                       <ProductCard images={images}
-                                    title={title}
-                                    captionSlot={captionSlot}
-                                    contentSlot={`${price} $`}
-                                    description={description}
-                                    onClick={() => navigate(`/product/${id}`)}
-                                    actionSlot={() => addToCart(id)}
-                       />
-                    )
-                })}
-            </div>
+                <div className={styles.main_block__list}>
+                    {products.map(({title, images, price, description, id}: ProductModel) => {
+                        const getCaption: string[] = title.split(' ');
+                        const captionSlot: string = getCaption[getCaption.length-1];
+                        return (
+                           <ProductCard images={images}
+                                        title={title}
+                                        captionSlot={captionSlot}
+                                        contentSlot={`${price} $`}
+                                        description={description}
+                                        onClick={() => navigate(`/product/${id}`)}
+                                        actionSlot={() => addToCart(id)}
+                           />
+                        )
+                    })}
+                </div>
                 :
                 <div className={styles.not_found}>
                     <Text children="Products not found :(" view="p-20"/>

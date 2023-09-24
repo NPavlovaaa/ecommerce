@@ -10,7 +10,7 @@ import {
     ProductApi,
     ProductModel
 } from "../models/products/Product";
-import {action, computed, makeObservable, observable, runInAction} from "mobx";
+import {action, computed, IReactionDisposer, makeObservable, observable, reaction, runInAction} from "mobx";
 import {Meta} from "utils/meta";
 import axios from "axios";
 
@@ -54,7 +54,7 @@ export default class ProductStore{
     }
 
     get relatedProductsList(): ProductModel[] {
-        return linearizeCollection(this._productList).filter(item => item.category.id === this._productItem.category.id).slice(0, 2);
+        return linearizeCollection(this._productList).slice(0, 2);
     }
 
     get meta(): Meta {
@@ -70,7 +70,6 @@ export default class ProductStore{
         categoryId: number | undefined = rootStore.query.filter && rootStore.query.filter.id
     ): Promise<void> {
         this._meta = Meta.loading;
-        rootStore.query.setPage(1);
 
         const allProducts = await axios.get<ProductApi[]>(`${REACT_APP_URL}/products`, {
             params: {
@@ -97,6 +96,7 @@ export default class ProductStore{
         title: string = rootStore.query.searchQuery,
         categoryId: number | undefined = rootStore.query.filter && rootStore.query.filter.id
     ): Promise<void> {
+
         this._meta = Meta.loading;
         this._productList = getInitialCollectionModel();
 
@@ -148,5 +148,13 @@ export default class ProductStore{
             this._meta = Meta.error;
         })
     };
+
+
+    private readonly _qpReaction: IReactionDisposer = reaction(
+        () => this._productItem,
+        (product) => {
+            this.getProductList(undefined, product.category.id && product.category.id);
+        }
+    );
 
 }

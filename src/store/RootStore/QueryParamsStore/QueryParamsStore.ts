@@ -85,10 +85,12 @@ export default class QueryParamsStore {
 
     setSearchQuery(value: string) {
         this._searchQuery = value;
+        this.setPage(1);
     }
 
     setFilter(filter: Option) {
         this._filter = filter;
+        this.setPage(1);
     }
 
     async getCategoryList(): Promise<void> {

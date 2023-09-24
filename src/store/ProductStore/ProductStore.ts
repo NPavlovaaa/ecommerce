@@ -17,27 +17,31 @@ import axios from "axios";
 import rootStore from "../RootStore/instance";
 
 const REACT_APP_URL: string = 'https://api.escuelajs.co/api/v1';
-type PrivateFields = '_productList' | '_meta' | '_productItem';
+type PrivateFields = '_productList' | '_meta' | '_productItem' | '_productListLength';
 
 
 export default class ProductStore{
     private _productList: CollectionModel<number, ProductModel> = getInitialCollectionModel();
     private _productItem: ProductModel = getInitialProductModel();
     private _meta: Meta = Meta.initial;
+    private _productListLength: number = 0;
 
     constructor() {
         makeObservable<ProductStore, PrivateFields>(this,{
             _productList: observable.ref,
             _productItem: observable.ref,
             _meta: observable,
+            _productListLength: observable,
 
             productList: computed,
             relatedProductsList: computed,
             productItem: computed,
             meta: computed,
+            productListLength: computed,
 
             getProductList: action,
             getProductItem: action,
+            getAllProductList: action
         })
     }
 
@@ -57,14 +61,49 @@ export default class ProductStore{
         return this._meta;
     }
 
+    get productListLength(): number {
+        return this._productListLength;
+    }
+
+    async getAllProductList(
+        title: string = rootStore.query.searchQuery,
+        categoryId: number | undefined = rootStore.query.filter && rootStore.query.filter.id
+    ): Promise<void> {
+        this._meta = Meta.loading;
+        rootStore.query.setPage(1);
+
+        const allProducts = await axios.get<ProductApi[]>(`${REACT_APP_URL}/products`, {
+            params: {
+                title: title,
+                categoryId: categoryId
+            }
+        });
+
+        runInAction(() => {
+            if (allProducts.status === 200) {
+                try {
+                    this._productListLength = allProducts.data.length;
+                    this._meta = Meta.success;
+                    return;
+                } catch {
+                    this._meta = Meta.error;
+                }
+            }
+            this._meta = Meta.error;
+        })
+    };
+
     async getProductList(
         title: string = rootStore.query.searchQuery,
-        categoryId: string = rootStore.query.selectedFilters.map(item => item.id)[0]
+        categoryId: number | undefined = rootStore.query.filter && rootStore.query.filter.id
     ): Promise<void> {
         this._meta = Meta.loading;
         this._productList = getInitialCollectionModel();
 
-        const response = await axios.get<ProductApi[]>(`${REACT_APP_URL}/products/`, {
+        const offset = rootStore.query.offset;
+        const limit = rootStore.query.limit;
+
+        const response = await axios.get<ProductApi[]>(`${REACT_APP_URL}/products?offset=${offset}&limit=${limit}`, {
             params: {
                 title: title,
                 categoryId: categoryId
@@ -78,6 +117,7 @@ export default class ProductStore{
                     for (const item of response.data) {
                         list.push(normalizeProduct(item));
                     }
+
                     this._meta = Meta.success;
                     this._productList = normalizeCollection(list, ((listItem) => listItem.id));
                     return;
@@ -108,4 +148,5 @@ export default class ProductStore{
             this._meta = Meta.error;
         })
     };
+
 }

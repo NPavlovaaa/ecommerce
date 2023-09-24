@@ -12,7 +12,7 @@ import {CategoryApi, CategoryModel, normalizeCategory} from "../../models/produc
 
 const REACT_APP_URL: string = 'https://api.escuelajs.co/api/v1';
 
-type PrivateFields = "_meta" | "_currentPage" | "_searchQuery" | "_selectedFilters" | "_categoriesList";
+type PrivateFields = "_meta" | "_currentPage" | "_searchQuery" | "_filter" | "_categoriesList" | '_offset' | '_limit';
 
 export default class QueryParamsStore {
     private _meta: Meta = Meta.initial;
@@ -20,25 +20,32 @@ export default class QueryParamsStore {
 
     private _currentPage: number = 1;
     private _searchQuery: string = "";
-    private _selectedFilters: Option[] = [];
+    private _filter: Option;
+
+    private _offset: number = 0;
+    private _limit: number = 6;
 
     constructor() {
         makeObservable<QueryParamsStore, PrivateFields>(this, {
             _categoriesList: observable,
             _meta: observable,
+            _offset: observable,
+            _limit: observable,
             _currentPage: observable,
             _searchQuery: observable,
-            _selectedFilters: observable.ref,
+            _filter: observable.ref,
 
             meta: computed,
             currentPage: computed,
             searchQuery: computed,
-            selectedFilters: computed,
+            filter: computed,
             categoryList: computed,
+            limit: computed,
+            offset: computed,
 
             setPage: action,
             setSearchQuery: action,
-            setFilters: action,
+            setFilter: action,
             getCategoryList: action,
         });
     }
@@ -51,29 +58,38 @@ export default class QueryParamsStore {
         return this._currentPage;
     }
 
+    get limit(): number {
+        return this._limit;
+    }
+
+    get offset(): number {
+        return this._offset;
+    }
+
     get searchQuery(): string {
         return this._searchQuery;
     }
 
-    get selectedFilters(): Option[] {
-        return this._selectedFilters;
+    get filter(): Option {
+        return this._filter;
     }
+
     get categoryList(): Array<{id: number, name: string}>{
-        return linearizeCollection(this._categoriesList).map(({ id, name }) => ({ id, name}));
+        return linearizeCollection(this._categoriesList).map(({ id, name }) => ({ id, name }));
     }
 
     setPage(page: number) {
         this._currentPage = page;
+        this._offset = (this._currentPage - 1) * this._limit;
     }
 
     setSearchQuery(value: string) {
         this._searchQuery = value;
     }
 
-    setFilters(filters: []) {
-        this._selectedFilters = filters;
+    setFilter(filter: Option) {
+        this._filter = filter;
     }
-
 
     async getCategoryList(): Promise<void> {
         this._meta = Meta.loading;

@@ -17,7 +17,7 @@
     gap: 30px;
   }
 
-  .pagination{
+  .pagination, .not_found{
     @include custom_display(none, center);
     width: 100%;
   }

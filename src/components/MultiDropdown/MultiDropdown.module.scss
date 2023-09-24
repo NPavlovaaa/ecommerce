@@ -2,6 +2,7 @@
 
 .multi_dropdown {
     width: 300px;
+    cursor: pointer;
 
     &__ul {
         background-color: white;
@@ -28,7 +29,4 @@
         }
     }
 
-}
-.focused {
-    border: 1px solid $accent;
 }

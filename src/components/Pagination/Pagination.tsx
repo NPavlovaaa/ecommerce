@@ -2,8 +2,9 @@ import React from 'react';
 import classnames from 'classnames';
 import { usePagination, DOTS } from 'utils/pagination.hook.';
 import styles from './Pagination.module.scss';
+import {observer} from "mobx-react";
 
-const Pagination = props => {
+const Pagination = observer((props) => {
     const {
         onPageChange,
         totalCount,
@@ -24,19 +25,11 @@ const Pagination = props => {
         return null;
     }
 
-    const onNext = () => {
-        onPageChange(currentPage + 1);
-    };
-
-    const onPrevious = () => {
-        onPageChange(currentPage - 1);
-    };
-
     let lastPage = paginationRange[paginationRange.length - 1];
     return (
         <ul className={classnames(styles.pagination_container, { [className]: className })}>
             <li className={classnames(styles.pagination_item, styles.dots, currentPage === 1 ? styles.disabled : null)}
-                onClick={onPrevious}
+                onClick={() => onPageChange(currentPage - 1)}
             >
                 <div className={classnames(styles.arrow, styles.left)} />
             </li>
@@ -54,12 +47,12 @@ const Pagination = props => {
                 );
             })}
             <li className={classnames(styles.pagination_item, styles.dots, currentPage === lastPage ? styles.disabled : null)}
-                onClick={onNext}
+                onClick={() => onPageChange(currentPage + 1)}
             >
                 <div className={classnames(styles.arrow, styles.right)} />
             </li>
         </ul>
     );
-};
+})
 
 export default Pagination;

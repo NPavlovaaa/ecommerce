@@ -1,17 +1,14 @@
 import styles from './Filters.module.scss';
 import {Option} from "components/MultiDropdown";
 import MultiDropdown from "components/MultiDropdown";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {observer} from "mobx-react";
 import rootStore from "store/RootStore/instance";
 
-const Filters: React.FC = observer(({setNewFilters}) => {
-    const [filters, setFilters] = useState(rootStore.query.selectedFilters);
+const Filters: React.FC = observer(() => {
 
     const handleMultiDropdownChange = (newValue) => {
-        setFilters(newValue)
-        rootStore.query.setFilters(newValue)
-        setNewFilters(newValue)
+        rootStore.query.setFilter(newValue)
     };
 
     useEffect(() => {
@@ -22,9 +19,9 @@ const Filters: React.FC = observer(({setNewFilters}) => {
         <div className={styles.filter_main_block}>
             <MultiDropdown
                 options={rootStore.query.categoryList}
-                value={filters}
-                onChange={(handleMultiDropdownChange)}
-                getTitle={(values: Option[]) => `Filters: ${values.map(({ name }) => name).join(', ')}`}
+                value={rootStore.query.filter}
+                onChange={handleMultiDropdownChange}
+                getTitle={(value: Option) => `Filter: ${value ? value.name : ''}`}
             />
         </div>
     );

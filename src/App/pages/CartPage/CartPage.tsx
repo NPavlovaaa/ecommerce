@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from "./CartPage.module.scss";
 import CartList from "./components/CartList";
 import Text from "components/Text";

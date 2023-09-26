@@ -5,7 +5,12 @@ import Text from "components/Text";
 import {ProductModel} from "store/models/products/Product";
 import {observer} from "mobx-react-lite";
 
-const RelatedProducts: React.FC = observer(({products}) => {
+type Props = {
+    products: ProductModel[]
+}
+
+const RelatedProducts: React.FC<Props> = observer(({products}: Props) => {
+    console.log(products)
 
     return(
         <div className={styles.related_main_block}>

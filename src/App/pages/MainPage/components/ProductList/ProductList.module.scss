@@ -21,6 +21,15 @@
     @include custom_display(none, center);
     width: 100%;
   }
+
+  .link{
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    width: 360px;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 

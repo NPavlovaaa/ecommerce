@@ -2,12 +2,12 @@ import { useMemo } from 'react';
 
 export const DOTS = '...';
 
-const range = (start, end): Array<any> => {
+const range = (start: number, end: number): Array<any> => {
     let length = end - start + 1;
     return Array.from({ length }, (_, idx) => idx + start);
 };
 
-export const usePagination = ({totalCount, pageSize, siblingCount = 1, currentPage}) => {
+export const usePagination = ({totalCount = 1, pageSize = 1, siblingCount = 1, currentPage = 1}) => {
     const paginationRange = useMemo(() => {
         const totalPageCount = Math.ceil(totalCount / pageSize);
         const totalPageNumbers = siblingCount + 2;

@@ -11,7 +11,7 @@
 }
 
 .cart_list{
-  @include custom_display(column, start, $space-m);
+  @include custom_display(column, flex-start, $space-m);
   flex-basis: 75%;
 }
 .total_block{

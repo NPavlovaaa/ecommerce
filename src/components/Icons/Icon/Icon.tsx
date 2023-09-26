@@ -8,7 +8,7 @@ export type IconProps = {
     height?: number;
     color?: string;
     icon?: React.ReactNode;
-    onClick: React.MouseEventHandler;
+    onClick?: React.MouseEventHandler;
 };
 
 const Icon: React.FC<IconProps> = ({
@@ -21,7 +21,7 @@ const Icon: React.FC<IconProps> = ({
 }) => {
 
     return (
-        <div onClick={onClick ? onClick : null} className={classNames(styles.block, className)} style={{ width, height, color }}>
+        <div onClick={() => onClick} className={classNames(styles.block, className)} style={{ width, height, color }}>
             {icon}
         </div>
     );

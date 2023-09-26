@@ -6,7 +6,7 @@ export type TextProps = {
     /** Стиль отображения */
     view?: 'title' | 'button' | 'p-20' | 'p-18' | 'p-16' | 'p-14';
     /** Html-тег */
-    tag?:  'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div' | 'p' | 'span';
+    tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div' | 'p' | 'span';
     /** Начертание шрифта */
     weight?: 'normal' | 'medium' | 'bold';
     /** Контент */
@@ -26,14 +26,15 @@ const Text: React.FC<TextProps> = ({
    color = "inherit",
    maxLines
 }) => {
-
-    let localColor: string;
+    const primary: string = "#000000";
+    const secondary: string = "#AFADB5";
+    const accent: string = "#518581";
     const button: string = "18";
-    const title: string = "32"; // bold lineHeight 48
-    const p20: string = "20"; // lineHeight 24
-    const p16: string = "16"; // lineHeight 20
-    const p18: string = "18"; // lineHeight 22
-    const p14: string = "14"; // lineHeight 18
+    const title: string = "44";
+    const p20: string = "20";
+    const p16: string = "16";
+    const p18: string = "18";
+    const p14: string = "14";
     let lineHeight: string = "inherit";
 
     function countLineHeight(fontSize: number) {
@@ -41,14 +42,15 @@ const Text: React.FC<TextProps> = ({
     }
 
     switch (color) {
+        case "primary":
+            color = primary
+            break
         case "secondary":
-            localColor = "#AFADB5";
+            color = secondary
             break
         case "accent":
-            localColor = "#518581";
+            color = accent
             break
-        case "primary":
-            localColor = "#000000"
     }
 
     switch (view) {
@@ -56,7 +58,7 @@ const Text: React.FC<TextProps> = ({
             view = button
             lineHeight = button
             break
-        case "title": {}
+        case "title":
             view = title
             if (!weight) {
                 weight = "bold"
@@ -82,17 +84,19 @@ const Text: React.FC<TextProps> = ({
     }
 
     return (
-        React.createElement(Tag, { className, style: {
-                color: localColor,
+        React.createElement(Tag, {
+            className, style: {
+                color: color,
                 fontWeight: weight,
                 fontSize: `${view}px`,
                 lineHeight: `${lineHeight}px`,
                 overflow: maxLines ? "hidden" : null,
                 textOverflow: maxLines ? "ellipsis" : null,
                 display: maxLines ? "-webkit-box" : null,
-                webkitLineClamp: maxLines ? maxLines.toString() : null,
-                webkitBoxOrient: maxLines ? "vertical" : null
-            } }, children)
+                WebkitLineClamp: maxLines ? maxLines.toString() : null,
+                WebkitBoxOrient: maxLines ? "vertical" : null
+            }
+        }, children)
     );
 };
 

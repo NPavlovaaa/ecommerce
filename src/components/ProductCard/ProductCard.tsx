@@ -1,13 +1,12 @@
 import React from 'react';
 import Text from "../Text";
 import styles from "./ProductCard.module.scss";
-import Button from "../Button";
 
 export type CardProps = {
     /** Дополнительный classname */
     className?: string,
     /** URL изображения */
-    images: string;
+    images: string[];
     /** Слот над заголовком */
     captionSlot?: React.ReactNode;
     /** Заголовок карточки */
@@ -33,15 +32,10 @@ const ProductCard: React.FC<CardProps> = ({
    actionSlot,
 }) => {
 
-    const clickOnButton = (e) => {
-        e.stopPropagation();
-        actionSlot ? actionSlot() : null
-    }
-
     return (
-        <div key={title} className={`${styles.parent} ${className}`} onClick={onClick ? onClick : null}>
+        <div className={`${styles.parent} ${className}`} onClick={() => onClick}>
             <div className={styles.card_header}>
-                <img src={images} className={styles.card_header__img} alt="image product"/>
+                <img src={images[0]} className={styles.card_header__img} alt="image product"/>
             </div>
             <div className={styles.card_body}>
                 <div className={styles.card_body__text_block}>
@@ -51,11 +45,7 @@ const ProductCard: React.FC<CardProps> = ({
                 </div>
                 <div className={styles.card_body__footer_block}>
                     {contentSlot ? <Text children={contentSlot} view="p-18" weight="bold"/> : null}
-                    {actionSlot ?
-                        <Button onClick={clickOnButton}>
-                            <Text children="Add to cart" view="button"/>
-                        </Button>
-                        : null}
+                    {actionSlot ? actionSlot : null}
                 </div>
             </div>
         </div>

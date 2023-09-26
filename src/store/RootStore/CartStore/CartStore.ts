@@ -70,7 +70,7 @@ export default class CartStore{
                         list.push(normalizeProduct(item));
                     }
                     this._meta = Meta.success;
-                    this._cartList = normalizeCollection(list.filter(item => keysCartList.some(key => item.id === key)),
+                    this._cartList = normalizeCollection(list.filter(item => keysCartList.some((key: number) => item.id === key)),
                         ((listItem) => listItem.id));
 
                     return;

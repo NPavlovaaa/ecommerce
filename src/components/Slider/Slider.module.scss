@@ -1,0 +1,11 @@
+@import "variables";
+
+.img{
+        box-sizing: border-box;
+        max-width: 100%;
+        height: auto;
+        width: auto;
+        background-color: $light-white;
+        flex-shrink: 0;
+
+}

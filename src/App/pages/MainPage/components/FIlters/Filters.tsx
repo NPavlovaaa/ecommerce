@@ -1,33 +1,30 @@
 import styles from './Filters.module.scss';
 import {Option} from "components/MultiDropdown";
 import MultiDropdown from "components/MultiDropdown";
-import React, {useState} from "react";
+import React, {useEffect} from "react";
+import {observer} from "mobx-react";
+import rootStore from "store/RootStore/instance";
 
-const Filters: React.FC = () => {
+const Filters: React.FC = observer(() => {
 
-    const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
-
-    const handleMultiDropdownChange = (newValue: Option[]) => {
-        setSelectedOptions(newValue);
+    const handleMultiDropdownChange = (newValue) => {
+        rootStore.query.setFilter(newValue)
     };
 
-    const OPTIONS = [
-        { key: 'msk', value: 'Moscow' },
-        { key: 'spb', value: 'Saint Petersburg' },
-        { key: 'ekb', value: 'Ekaterinburg' },
-    ];
+    useEffect(() => {
+        rootStore.query.getCategoryList();
+    }, [rootStore.query])
 
     return (
         <div className={styles.filter_main_block}>
             <MultiDropdown
-                options={OPTIONS}
-                value={selectedOptions}
+                options={rootStore.query.categoryList}
+                value={rootStore.query.filter}
                 onChange={handleMultiDropdownChange}
-                getTitle={(values: Option[]) => `Filters: ${values.map(({ value }) => value).join(', ')}`}
+                getTitle={(value: Option) => `Filter: ${value ? value.name : ''}`}
             />
-
         </div>
     );
-}
+})
 
 export default Filters;

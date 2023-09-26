@@ -1,8 +1,8 @@
 @import "variables";
 
 button, .loading-only:hover {
-    border: none;
     @include custom_display(none, center, $space-xxs);
+    border: none;
     align-items: center;
     padding: 14px 20px;
     background-color: $accent;

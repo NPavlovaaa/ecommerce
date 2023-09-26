@@ -1,0 +1,22 @@
+@import "variables";
+
+.counting_cart{
+  @include custom_display(column, center, $space-s);
+  align-content: center;
+
+  &_button_block{
+    display: flex;
+
+    button{
+      width: 100%;
+    }
+  }
+
+  &_total_count, &_total_cost{
+    @include custom_display(none, space-between, $space-s);
+    background-color: white;
+    padding: $space-m;
+  }
+}
+
+

@@ -8,6 +8,7 @@ export type IconProps = {
     height?: number;
     color?: string;
     icon?: React.ReactNode;
+    onClick: React.MouseEventHandler;
 };
 
 const Icon: React.FC<IconProps> = ({
@@ -16,10 +17,11 @@ const Icon: React.FC<IconProps> = ({
    height,
    color = 'inherit',
    icon,
+   onClick
 }) => {
 
     return (
-        <div className={classNames(styles.block, className)} style={{ width, height, color }}>
+        <div onClick={onClick ? onClick : null} className={classNames(styles.block, className)} style={{ width, height, color }}>
             {icon}
         </div>
     );

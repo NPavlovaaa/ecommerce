@@ -1,0 +1,21 @@
+@import "variables";
+
+.cart_body_page{
+  @include custom_display(column, none, $space-m);
+  padding: 60px 100px 48px 100px;
+
+}
+
+.cart_body{
+  @include custom_display(none, none, $space-l);
+}
+
+.cart_list{
+  @include custom_display(column, start, $space-m);
+  flex-basis: 75%;
+}
+.total_block{
+  @include custom_display(column, center, $space-m);
+  height: fit-content;
+  flex-basis: 25%;
+}

@@ -1,0 +1,5 @@
+@import "variables";
+
+.cart_list{
+  @include custom_display(column, none, $space-xs);
+}

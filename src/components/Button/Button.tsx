@@ -10,9 +10,10 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   /** Текст кнопки */
   children: React.ReactNode;
   className?: string;
+  textView?: "title" | "button" | "p-20" | "p-18" | "p-16" | "p-14";
 };
 
-const Button: React.FC<ButtonProps> = ({loading, children, className, ...props}) => {
+const Button: React.FC<ButtonProps> = ({loading, children, textView, className, ...props}) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!loading && !props.disabled && props.onClick) {
       props.onClick(e);
@@ -27,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({loading, children, className, ...props})
           disabled={props.disabled || loading}
       >
         {loading ? <Loader size="s" color="#ffffff"/> : null}
-        <Text view="button">{children}</Text>
+        <Text view={textView ? textView : "button"} className="text-align: start">{children}</Text>
       </button>
   );
 };

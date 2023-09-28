@@ -44,8 +44,8 @@ const ProductList: React.FC = observer(() => {
             const searchString = searchParam !== null ? searchParam : "";
             rootStore.query.setSearchQuery(searchString);
         }
-        if (urlSearchParams.get("filters")) {
-            const filtersParam: any = urlSearchParams.get("filters")?.split('?');
+        if (urlSearchParams.get("filter")) {
+            const filtersParam: any = urlSearchParams.get("filter")?.split('?');
             rootStore.query.setFilter({id: Number(filtersParam[0]), name: filtersParam[1]});
         }
     }, []);

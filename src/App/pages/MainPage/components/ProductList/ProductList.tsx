@@ -6,9 +6,10 @@ import Pagination from "components/Pagination/Pagination";
 import {observer, useLocalObservable} from "mobx-react-lite";
 import {ProductModel} from "store/models/products/Product";
 import ProductStore from "store/ProductStore";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import rootStore from "store/RootStore/instance";
 import Spinner from "components/Spinner/Spinner";
+import Button from "components/Button";
 
 const ProductList: React.FC = observer(() => {
     const productStore = useLocalObservable(() => new ProductStore());
@@ -34,14 +35,18 @@ const ProductList: React.FC = observer(() => {
 
     useEffect(() => {
         if (urlSearchParams.get("page")) {
-            rootStore.query.setPage(parseInt(urlSearchParams.get("page") as string));
+            const pageParam = urlSearchParams.get("page");
+            const pageNumber = pageParam !== null ? parseInt(pageParam) : 1;
+            rootStore.query.setPage(pageNumber);
         }
         if (urlSearchParams.get("search")) {
-            rootStore.query.setSearchQuery(urlSearchParams.get("search") as string);
+            const searchParam = urlSearchParams.get("search");
+            const searchString = searchParam !== null ? searchParam : "";
+            rootStore.query.setSearchQuery(searchString);
         }
         if (urlSearchParams.get("filter")) {
-            const filter = urlSearchParams.get("filter")?.split('?');
-            rootStore.query.setFilter({id: filter[0], name: filter[1]});
+            const filtersParam: any = urlSearchParams.get("filter")?.split('?');
+            rootStore.query.setFilter({id: Number(filtersParam[0]), name: filtersParam[1]});
         }
     }, []);
 
@@ -70,18 +75,23 @@ const ProductList: React.FC = observer(() => {
             {meta === 'loading' ? <Spinner/> : null}
             {products.length > 0 ?
                 <div className={styles.main_block__list}>
-                    {products.map(({title, images, price, description, id}: ProductModel) => {
+                    {products && products.map(({title, images, price, description, id}: ProductModel) => {
                         const getCaption: string[] = title.split(' ');
                         const captionSlot: string = getCaption[getCaption.length-1];
                         return (
-                           <ProductCard images={images}
-                                        title={title}
-                                        captionSlot={captionSlot}
-                                        contentSlot={`${price} $`}
-                                        description={description}
-                                        onClick={() => navigate(`/product/${id}`)}
-                                        actionSlot={() => addToCart(id)}
-                           />
+                            <Link to={`/product/${id}`} key={id} className={styles.link}>
+                                <ProductCard images={images}
+                                             title={title}
+                                             captionSlot={captionSlot}
+                                             contentSlot={`${price} $`}
+                                             description={description}
+                                             actionSlot={
+                                                 <Button onClick={() => addToCart(id)}>
+                                                     <Text children="Add to cart" view="button"/>
+                                                 </Button>
+                                             }
+                                />
+                            </Link>
                         )
                     })}
                 </div>
@@ -94,7 +104,7 @@ const ProductList: React.FC = observer(() => {
                 <Pagination
                     currentPage={currentPage}
                     totalCount={productStore.productListLength}
-                    onPageChange={page => rootStore.query.setPage(page)}
+                    onPageChange={(page: number) => rootStore.query.setPage(page)}
                     pageSize={pageSize}
                 />
             </div>

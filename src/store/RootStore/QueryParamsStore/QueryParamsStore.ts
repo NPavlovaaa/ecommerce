@@ -1,6 +1,6 @@
 import {action, computed, makeObservable, observable, runInAction} from 'mobx';
-import {Option} from "components/MultiDropdown/MultiDropdown.tsx";
-import {Meta} from "utils/meta.ts";
+import {Option} from "components/MultiDropdown/MultiDropdown";
+import {Meta} from "utils/meta";
 import {
     CollectionModel,
     getInitialCollectionModel,
@@ -20,7 +20,7 @@ export default class QueryParamsStore {
 
     private _currentPage: number = 1;
     private _searchQuery: string = "";
-    private _filter: Option;
+    private _filter: Option = {id: 0, name: ''};
 
     private _offset: number = 0;
     private _limit: number = 6;

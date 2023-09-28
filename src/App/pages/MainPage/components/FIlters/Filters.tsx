@@ -7,7 +7,7 @@ import rootStore from "store/RootStore/instance";
 
 const Filters: React.FC = observer(() => {
 
-    const handleMultiDropdownChange = (newValue) => {
+    const handleMultiDropdownChange = (newValue: Option) => {
         rootStore.query.setFilter(newValue)
     };
 

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Input from '../Input';
 import styles from './MultiDropdown.module.scss';
 import styles_input from 'components/Input/Input.module.scss';
-import ArrowDownIcon from '../icons/ArrowDownIcon';
+import ArrowDownIcon from '../Icons/ArrowDownIcon';
 
 export type Option = {
     id: number;
@@ -41,7 +41,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
         setDisabled(initialDisabled);
     }, [initialDisabled]);
 
-    const handleClick = (option) => {
+    const handleClick = (option: Option) => {
         setIsOpen(false);
         onChange(option);
     }
@@ -49,6 +49,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
     return (
         <div className={`${styles.multi_dropdown} ${className}`}>
             <Input
+                onChange={() => {}}
                 placeholder={!value ? getTitle(value) : undefined}
                 value={!value ? undefined : getTitle(value)}
                 disabled={disabled}

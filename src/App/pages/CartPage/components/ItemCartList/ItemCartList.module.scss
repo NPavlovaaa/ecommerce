@@ -1,7 +1,7 @@
 @import "variables";
 
 .item_cart_list{
-  @include custom_display(none, start, $space-m);
+  @include custom_display(none, flex-start, $space-m);
   padding: $space-m $space-l;
   background-color: white;
 }
@@ -11,7 +11,7 @@
   flex-basis: 60%;
 
   &_text{
-    @include custom_display(column, start, $space-s);
+    @include custom_display(column, flex-start, $space-s);
 
     &_desc{
       color: $secondary;
@@ -19,7 +19,7 @@
   }
 
   &_button{
-    @include custom_display(none, start, $space-s);
+    @include custom_display(none, flex-start, $space-s);
 
     &_fav{
       background-color: transparent;
@@ -65,7 +65,7 @@
 }
 
 .count_block{
-  @include custom_display(none, end, $space-xxs);
+  @include custom_display(none, flex-end, $space-xxs);
   height: 35px;
   flex-basis: 20%;
   align-items: center;
@@ -83,10 +83,10 @@
 }
 
 .price_block{
-  @include custom_display(none, end, $space-xxs);
+  @include custom_display(none, flex-end, $space-xxs);
   height: 35px;
   flex-basis: 10%;
-  align-items: start;
+  align-items: flex-start;
 
   &_price{
     justify-self: end;

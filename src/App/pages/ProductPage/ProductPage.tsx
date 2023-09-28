@@ -14,9 +14,14 @@ const ProductPage: React.FC = observer(() => {
     const {id} = useParams();
     const productStore = useLocalObservable(() => new ProductStore())
 
-    useEffect(() =>{
-        productStore.getProductItem(id);
+    useEffect(() => {
+        if(id){
+            productStore.getProductItem(id);
+        }
     }, [productStore])
+
+    const product = productStore.productItem;
+    const relatedProductsList = productStore.relatedProductsList;
 
     return(
         <div className={styles.product_body_page}>
@@ -26,8 +31,8 @@ const ProductPage: React.FC = observer(() => {
                     <Text view="p-20" children="Back"/>
                 </div>
             </Link>
-            <Product product={productStore.productItem}/>
-            <RelatedProducts products={productStore.relatedProductsList} />
+            <Product {...product}/>
+            <RelatedProducts products={relatedProductsList}/>
         </div>
     )
 })

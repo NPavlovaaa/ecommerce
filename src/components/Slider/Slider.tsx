@@ -1,14 +1,19 @@
 import AwesomeSlider from 'react-awesome-slider';
-import AwesomeSliderStyles from 'react-awesome-slider/src/styles';
-import React from "react";
+import 'react-awesome-slider/dist/styles.css';
+import 'react-awesome-slider/dist/custom-animations/cube-animation.css';
+import React, {FC} from "react";
 
-const Slider = ({images}) => {
+type Props = {
+    images: Array<string>
+}
 
+const Slider: FC<Props> = ({images}: Props) => {
+    console.log('images', images)
     return(
-    <AwesomeSlider cssModule={AwesomeSliderStyles}>
-        {images && images.map(item => {
+    <AwesomeSlider animation="cubeAnimation">
+        {images ? images.map((item: string) => {
             return <div data-src={item}/>
-        })}
+        }) : null}
     </AwesomeSlider>
 )};
 export default Slider;

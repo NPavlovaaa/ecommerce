@@ -1,3 +1,4 @@
+import React from 'react';
 import {observer} from "mobx-react-lite";
 import {useEffect} from "react";
 import ItemCartList from "../ItemCartList";
@@ -20,7 +21,7 @@ const CartList = observer(() => {
     return(
         <div className={styles.cart_list}>
             {meta === 'loading' ? <Spinner/> : null}
-            {cartList.map(item => (<ItemCartList item={item}/>))}
+            {cartList.map((item) => (<ItemCartList {...item}/>))}
         </div>
     )
 })

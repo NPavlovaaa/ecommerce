@@ -15,8 +15,10 @@ const Search: React.FC = observer(() => {
     }
 
     useEffect(() => {
-        if (urlSearchParams.get("search") && search === '') {
-            setSearch(urlSearchParams.get("search"));
+        if (urlSearchParams.get("search")) {
+            const searchParam = urlSearchParams.get("search");
+            const searchString = searchParam !== null ? searchParam : "";
+            setSearch(searchString);
         }
     }, [])
 

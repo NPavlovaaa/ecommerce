@@ -4,9 +4,11 @@ button, .loading-only:hover {
     @include custom_display(none, center, $space-xxs);
     border: none;
     align-items: center;
-    padding: 14px 20px;
+    padding: $space-s $space-l;
     background-color: $accent;
     color: white;
+    cursor: pointer;
+    min-height: 52px;
 
     p{
         line-height: 24px !important;
@@ -22,6 +24,7 @@ button, .loading-only:hover {
         background-color: $light-white;
         color: white;
         transition: all 0.3s ease-in-out;
+        cursor: inherit;
     }
 
     &:active {

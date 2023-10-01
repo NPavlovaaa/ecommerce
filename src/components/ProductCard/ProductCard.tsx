@@ -33,7 +33,7 @@ const ProductCard: React.FC<CardProps> = ({
 }) => {
 
     return (
-        <div className={`${styles.parent} ${className}`} onClick={() => onClick}>
+        <div className={`${styles.parent} ${className}`} onClick={onClick}>
             <div className={styles.card_header}>
                 <img src={images[0]} className={styles.card_header__img} alt="image product"/>
             </div>

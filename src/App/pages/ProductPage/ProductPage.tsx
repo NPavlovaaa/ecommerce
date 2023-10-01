@@ -18,7 +18,7 @@ const ProductPage: React.FC = observer(() => {
         if(id){
             productStore.getProductItem(id);
         }
-    }, [productStore])
+    }, [productStore, id])
 
     const product = productStore.productItem;
     const relatedProductsList = productStore.relatedProductsList;

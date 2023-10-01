@@ -9,6 +9,7 @@ const Filters: React.FC = observer(() => {
 
     const handleMultiDropdownChange = (newValue: Option) => {
         rootStore.query.setFilter(newValue)
+        rootStore.query.setPage(1);
     };
 
     useEffect(() => {

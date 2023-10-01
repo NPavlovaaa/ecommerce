@@ -11,14 +11,6 @@
     flex-shrink: 0;
     background-color: $light-white;
     align-items: center;
-
-    &__img{
-      box-sizing: border-box;
-      max-height: 100%;
-      max-width: 100%;
-      background-color: $light-white;
-      flex-shrink: 0;
-    }
   }
 
   &__desc{

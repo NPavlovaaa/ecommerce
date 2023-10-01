@@ -1,11 +1,19 @@
 @import "variables";
 
-.img{
-        box-sizing: border-box;
-        max-width: 100%;
-        height: auto;
-        width: auto;
-        background-color: $light-white;
-        flex-shrink: 0;
 
+.image_block{
+        @include custom_display(none, center);
+        width: 600px;
+        height: 600px;
+        flex-shrink: 0;
+        background-color: $light-white;
+        align-items: center;
+
+        &__img{
+                box-sizing: border-box;
+                height: 100%;
+                width: 100%;
+                background-color: $light-white;
+                flex-shrink: 0;
+        }
 }

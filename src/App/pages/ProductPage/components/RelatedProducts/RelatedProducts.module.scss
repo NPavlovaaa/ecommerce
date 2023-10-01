@@ -11,9 +11,12 @@
   }
 
   &__list{
-    @include custom_display(none, space-between, 30px);
-    align-items: flex-start;
-    flex-wrap: wrap;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 360px));
+    justify-content: space-between;
+    align-content: space-between;
+    gap: 30px;
   }
 }
 

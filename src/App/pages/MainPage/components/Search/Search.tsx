@@ -11,7 +11,8 @@ const Search: React.FC = observer(() => {
     const urlSearchParams = new URLSearchParams(window.location.search);
 
     const handleClick = () => {
-        rootStore.query.setSearchQuery(search)
+        rootStore.query.setSearchQuery(search);
+        rootStore.query.setPage(1);
     }
 
     useEffect(() => {

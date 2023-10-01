@@ -4,13 +4,22 @@ import styles from './RelatedProducts.module.scss';
 import Text from "components/Text";
 import {ProductModel} from "store/models/products/Product";
 import {observer} from "mobx-react-lite";
+import Button from "components/Button";
+import rootStore from "store/RootStore/instance";
+import {useNavigate} from "react-router-dom";
 
 type Props = {
     products: ProductModel[]
 }
 
 const RelatedProducts: React.FC<Props> = observer(({products}: Props) => {
-    console.log(products)
+    const cartStore = rootStore.cart;
+    const navigate = useNavigate();
+
+    const addToCart = (id: number, e: any) => {
+        e.stopPropagation();
+        cartStore.setKeyCartList(id);
+    }
 
     return(
         <div className={styles.related_main_block}>
@@ -19,11 +28,22 @@ const RelatedProducts: React.FC<Props> = observer(({products}: Props) => {
             </div>
             {products ?
                 <div className={styles.related_main_block__list}>
-                    {products.map((item: ProductModel) => {
-                        const getCaption: string[] = item.title.split(' ');
+                    {products.map(({title, price, id, ...props}: ProductModel) => {
+                        const getCaption: string[] = title.split(' ');
                         const captionSlot: string = getCaption[getCaption.length-1];
                         return (
-                            <ProductCard key={item.id} captionSlot={captionSlot} contentSlot={`${item.price} $`} {...item}/>
+                            <ProductCard
+                                title={title}
+                                captionSlot={captionSlot}
+                                contentSlot={`${price} $`}
+                                onClick={() => navigate(`/product/${id}`)}
+                                actionSlot={
+                                    <Button onClick={(e) => addToCart(id, e)}>
+                                        <Text children="Add to cart" view="button"/>
+                                    </Button>
+                                }
+                                {...props}
+                            />
                         )
                     })}
                 </div>

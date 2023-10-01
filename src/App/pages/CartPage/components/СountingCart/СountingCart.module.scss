@@ -4,7 +4,7 @@
   @include custom_display(column, center, $space-s);
   align-content: center;
 
-  &_button_block{
+  &__button_block{
     display: flex;
 
     button{
@@ -12,10 +12,53 @@
     }
   }
 
-  &_total_count, &_total_cost{
+  &__cost{
+    @include custom_display(column, center, $space-s);
+
+  }
+
+  &__total_count, &__total_cost, .block_points{
     @include custom_display(none, space-between, $space-s);
+    align-items: center;
+  }
+
+  &__total_count, &__cost{
     background-color: white;
     padding: $space-m;
+  }
+
+  .points{
+    @include custom_display(none, space-between);
+    padding: 0;
+    background-color: $light-white;
+    border-radius: 12px;
+    width: fit-content;
+    list-style-type: none;
+    margin: 0;
+
+    &__block{
+      @include custom_display(none, space-between);
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 0 10px;
+
+      &__span{
+        opacity: 0;
+      }
+    }
+
+    &__active{
+      background-color: $accent;
+    }
+
+    &__disabled{
+      background-color: $secondary;
+    }
+  }
+
+  .icon_block{
+    @include custom_display(none, flex-start, $space-xxs);
+    align-items: center;
   }
 }
 

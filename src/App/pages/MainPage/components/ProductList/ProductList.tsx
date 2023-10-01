@@ -6,7 +6,7 @@ import Pagination from "components/Pagination/Pagination";
 import {observer, useLocalObservable} from "mobx-react-lite";
 import {ProductModel} from "store/models/products/Product";
 import ProductStore from "store/ProductStore";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import rootStore from "store/RootStore/instance";
 import Spinner from "components/Spinner/Spinner";
 import Button from "components/Button";
@@ -35,9 +35,7 @@ const ProductList: React.FC = observer(() => {
 
     useEffect(() => {
         if (urlSearchParams.get("page")) {
-            const pageParam = urlSearchParams.get("page");
-            const pageNumber = pageParam !== null ? parseInt(pageParam) : 1;
-            rootStore.query.setPage(pageNumber);
+            rootStore.query.setPage(parseInt(urlSearchParams.get("page") as string));
         }
         if (urlSearchParams.get("search")) {
             const searchParam = urlSearchParams.get("search");
@@ -62,7 +60,8 @@ const ProductList: React.FC = observer(() => {
     }, [currentPage, searchQuery, filter]);
 
 
-    const addToCart = (id: number) => {
+    const addToCart = (id: number, e: any) => {
+        e.stopPropagation();
         cartStore.setKeyCartList(id);
     }
 
@@ -75,27 +74,26 @@ const ProductList: React.FC = observer(() => {
             {meta === 'loading' ? <Spinner/> : null}
             {products.length > 0 ?
                 <div className={styles.main_block__list}>
-                    {products && products.map(({title, images, price, description, id}: ProductModel) => {
+                    {products && products.map(({title, price, id, ...props}: ProductModel) => {
                         const getCaption: string[] = title.split(' ');
                         const captionSlot: string = getCaption[getCaption.length-1];
                         return (
-                            <Link to={`/product/${id}`} key={id} className={styles.link}>
-                                <ProductCard images={images}
-                                             title={title}
-                                             captionSlot={captionSlot}
-                                             contentSlot={`${price} $`}
-                                             description={description}
-                                             actionSlot={
-                                                 <Button onClick={() => addToCart(id)}>
-                                                     <Text children="Add to cart" view="button"/>
-                                                 </Button>
-                                             }
-                                />
-                            </Link>
+                            <ProductCard
+                                 title={title}
+                                 captionSlot={captionSlot}
+                                 contentSlot={`${price} $`}
+                                 onClick={() => navigate(`/product/${id}`)}
+                                 actionSlot={
+                                     <Button onClick={(e) => addToCart(id, e)}>
+                                         <Text children="Add to cart" view="button"/>
+                                     </Button>
+                                 }
+                                 {...props}
+                            />
                         )
                     })}
                 </div>
-                :
+                : meta !== 'loading' &&
                 <div className={styles.not_found}>
                     <Text children="Products not found :(" view="p-20"/>
                 </div>

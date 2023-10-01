@@ -54,7 +54,7 @@ export default class ProductStore{
     }
 
     get relatedProductsList(): ProductModel[] {
-        return linearizeCollection(this._productList).slice(0, 2);
+        return linearizeCollection(this._productList).slice(0, 3);
     }
 
     get meta(): Meta {

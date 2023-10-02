@@ -43,7 +43,8 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
 
     const handleClick = (option: Option) => {
         setIsOpen(false);
-        onChange(option);
+        const newOption = value !== option ? option : {id: 0, name: ''};
+        onChange(newOption);
     }
 
     return (

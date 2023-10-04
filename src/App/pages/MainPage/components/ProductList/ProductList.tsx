@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import ProductCard from "components/ProductCard";
 import styles from './ProductList.module.scss';
 import Text from "components/Text";
@@ -9,11 +9,12 @@ import ProductStore from "store/ProductStore";
 import {useNavigate} from "react-router-dom";
 import rootStore from "store/RootStore/instance";
 import Spinner from "components/Spinner/Spinner";
-import Button from "components/Button";
+import ModalWindow from "components/ModalWIndow";
+import VariousButton from "components/VariousButton/VariousButton";
 
 const ProductList: React.FC = observer(() => {
+    const [showModal, setShowModal] = useState(false);
     const productStore = useLocalObservable(() => new ProductStore());
-    const cartStore = rootStore.cart;
     const meta = productStore.meta;
     const navigate = useNavigate();
     const currentPage = rootStore.query.currentPage;
@@ -59,14 +60,13 @@ const ProductList: React.FC = observer(() => {
         navigate(queryParams);
     }, [currentPage, searchQuery, filter]);
 
-
-    const addToCart = (id: number, e: any) => {
-        e.stopPropagation();
-        cartStore.setKeyCartList(id);
+    const isShowModal = (bool: boolean) => {
+        setShowModal(bool);
     }
 
     return(
         <div className={styles.main_block}>
+            {showModal ? <ModalWindow showModal={showModal} isShowModal={isShowModal}/> : null}
             <div className={styles.main_block__title_list}>
                 <Text view="title" weight="bold" className=''>Total Product</Text>
                 <Text view="p-20" weight="bold" color="accent">{productStore.productListLength}</Text>
@@ -83,11 +83,7 @@ const ProductList: React.FC = observer(() => {
                                  captionSlot={captionSlot}
                                  contentSlot={`${price} $`}
                                  onClick={() => navigate(`/product/${id}`)}
-                                 actionSlot={
-                                     <Button onClick={(e) => addToCart(id, e)}>
-                                         <Text children="Add to cart" view="button"/>
-                                     </Button>
-                                 }
+                                 actionSlot={<VariousButton id={id} isShowModal={isShowModal}/>}
                                  {...props}
                             />
                         )

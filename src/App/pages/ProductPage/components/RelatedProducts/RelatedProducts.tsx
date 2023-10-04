@@ -1,28 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import ProductCard from "components/ProductCard";
 import styles from './RelatedProducts.module.scss';
 import Text from "components/Text";
 import {ProductModel} from "store/models/products/Product";
 import {observer} from "mobx-react-lite";
-import Button from "components/Button";
-import rootStore from "store/RootStore/instance";
 import {useNavigate} from "react-router-dom";
+import VariousButton from "components/VariousButton/VariousButton";
+import ModalWindow from "components/ModalWIndow";
 
 type Props = {
     products: ProductModel[]
 }
 
 const RelatedProducts: React.FC<Props> = observer(({products}: Props) => {
-    const cartStore = rootStore.cart;
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
 
-    const addToCart = (id: number, e: any) => {
-        e.stopPropagation();
-        cartStore.setKeyCartList(id);
+    const isShowModal = (bool: boolean) => {
+        setShowModal(bool);
     }
 
     return(
         <div className={styles.related_main_block}>
+            {showModal ? <ModalWindow showModal={showModal} isShowModal={isShowModal}/> : null}
             <div className={styles.related_main_block__title_list}>
                 <Text view="title" weight="bold">Related Items</Text>
             </div>
@@ -37,11 +37,7 @@ const RelatedProducts: React.FC<Props> = observer(({products}: Props) => {
                                 captionSlot={captionSlot}
                                 contentSlot={`${price} $`}
                                 onClick={() => navigate(`/product/${id}`)}
-                                actionSlot={
-                                    <Button onClick={(e) => addToCart(id, e)}>
-                                        <Text children="Add to cart" view="button"/>
-                                    </Button>
-                                }
+                                actionSlot={<VariousButton id={id} isShowModal={isShowModal}/>}
                                 {...props}
                             />
                         )

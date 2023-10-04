@@ -1,14 +1,14 @@
 @import "variables";
 
 .item_cart_list{
-  @include custom_display(none, flex-start, $space-m);
+  @include custom_display(none, space-between, $space-m);
   padding: $space-m $space-l;
   background-color: white;
 }
 
 .text_block{
   @include custom_display(column, space-between, $space-m);
-  flex-basis: 60%;
+  flex-basis: 70%;
 
   &_text{
     @include custom_display(column, flex-start, $space-s);

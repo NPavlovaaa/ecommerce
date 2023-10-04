@@ -2,22 +2,14 @@
 
 button, .loading-only:hover {
     @include custom_display(none, center, $space-xxs);
-    border: none;
+    @include custom_button($accent, $accent-hover, white, white, none);
     align-items: center;
     padding: $space-s $space-l;
-    background-color: $accent;
-    color: white;
     cursor: pointer;
     min-height: 52px;
 
     p{
         line-height: 24px !important;
-    }
-
-    &:hover {
-        background-color: $accent-hover;
-        color: white;
-        transition: all 0.3s ease-in-out;
     }
 
     &:disabled:not(.loading-only), &:disabled:hover:not(.loading-only) {

@@ -23,8 +23,22 @@ $space-xl: 48px;
   @if($justify-content != none){
     justify-content: $justify-content;
   }
-
   @if($gap != none){
     gap: $gap;
+  }
+}
+
+@mixin custom_button($mainBackgroundColor, $hoverBackgroundColor, $mainColor, $hoverColor, $borderColor: none){
+  background-color: $mainBackgroundColor;
+  color: $mainColor;
+  border: none;
+  transition: all 0.3s ease-in-out;
+
+  &:hover{
+    background-color: $hoverBackgroundColor;
+    color: $hoverColor;
+  }
+  @if($borderColor != none){
+    border: 1px solid $borderColor;
   }
 }

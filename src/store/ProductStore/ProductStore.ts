@@ -149,12 +149,10 @@ export default class ProductStore{
         })
     };
 
-
     private readonly _qpReaction: IReactionDisposer = reaction(
         () => this._productItem,
         (product) => {
             this.getProductList(undefined, product.category.id && product.category.id);
         }
     );
-
 }

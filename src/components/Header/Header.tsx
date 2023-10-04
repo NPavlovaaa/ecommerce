@@ -1,14 +1,34 @@
 import styles from "./Header.module.scss";
 import Text from "../Text";
-import {Link, NavLink} from "react-router-dom";
-import React from "react";
+import {Link, NavLink, useNavigate} from "react-router-dom";
+import React, {FC, useEffect, useState} from "react";
 import LogoIcon from "../Icons/LogoIcon";
 import TitleIcon from "../Icons/TitleIcon";
 import UserIcon from "../Icons/UserIcon";
 import CartIcon from "../Icons/CartIcon";
+import {observer} from "mobx-react";
+import rootStore from "store/RootStore/instance";
+import {UserModel} from "store/models/users/User";
+import LogoutIcon from "../Icons/LogoutIcon";
+import LoginIcon from "../Icons/LoginIcon";
 
+type Props = {
+    onLogin: (bool: boolean) => void
+}
+const Header: FC<Props> = observer(({onLogin}: Props) => {
+    const user: UserModel | any = rootStore.auth.authUser;
+    const [cartLength, setCartLength] = useState(rootStore.cart.cartList.length);
+    const navigate = useNavigate();
 
-const Header: React.FC = () => {
+    useEffect(() => {
+        setCartLength(rootStore.cart.cartList.length);
+    }, [rootStore.cart.cartList, user])
+
+    const logout = () => {
+        rootStore.auth.logout();
+        navigate('/');
+    }
+
     return(
         <div className={styles.main_block}>
             <Link to="/">
@@ -36,14 +56,36 @@ const Header: React.FC = () => {
                     </li>
                 </ul>
             </div>
-            <div className={styles.main_block_account}>
-                <Link to="/cart">
-                    <CartIcon width={30} height={30}/>
-                </Link>
-                <UserIcon width={30} height={30}/>
+            <div>
+                {user ?
+                    <div className={styles.main_block__account}>
+                        <Link to="/cart" style={{ textDecoration: 'none' }}>
+                            <div className={styles.main_block__account__item}>
+                                <CartIcon width={30} height={30}/>
+                                <Text children={`${cartLength} items`} view="p-14"/>
+                            </div>
+                        </Link>
+                        <Link to="/user" style={{ textDecoration: 'none' }}>
+                            <div className={styles.main_block__account__item}>
+                                <UserIcon width={30} height={30}/>
+                                {user ? <Text children={user.name} view="p-14"/> : null}
+                            </div>
+                        </Link>
+                        <div className={styles.main_block__account__item}>
+                            <LogoutIcon width={30} height={30} onClick={logout}/>
+                            <Text children="Log out" view="p-14"/>
+                        </div>
+                    </div>
+                :
+                    <div className={styles.main_block__account__item}>
+                        <LoginIcon width={30} height={30} onClick={() => onLogin(true)}/>
+                        <Text children="Log in" view="p-14"/>
+                    </div>
+                }
+
             </div>
         </div>
     )
-}
+})
 
 export default Header;

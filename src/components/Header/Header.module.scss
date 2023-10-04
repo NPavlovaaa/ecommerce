@@ -9,7 +9,7 @@
     align-content: center;
     align-items: center;
 
-    &_active{
+    &__active{
         color: $accent;
         border-bottom: 3px solid $accent;
     }
@@ -44,7 +44,15 @@
         }
     }
 
-    &_account{
-        @include custom_display(none, none, $space-m);
+    &__account{
+        @include custom_display(none, center, $space-m);
+        align-items: center;
+
+        &__item{
+            @include custom_display(column, center, 4px);
+            color: $primary;
+            align-items: center;
+            cursor: pointer;
+        }
     }
 }

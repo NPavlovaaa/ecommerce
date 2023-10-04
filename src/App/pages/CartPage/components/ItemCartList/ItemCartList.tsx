@@ -38,11 +38,6 @@ const ItemCartList = observer(({id, images, title, description, price}: ProductM
                     </Button>
                 </div>
             </div>
-            <div className={styles.count_block}>
-                <Button className={styles.count_block_change}>-</Button>
-                <Text children="1" view="p-18" className={styles.count_block_count}/>
-                <Button className={styles.count_block_change}>+</Button>
-            </div>
             <div className={styles.price_block}>
                 <Text children={`${price}$`} view="p-20" className={styles.price_block_price}/>
             </div>

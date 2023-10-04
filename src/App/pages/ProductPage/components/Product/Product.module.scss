@@ -11,6 +11,14 @@
     flex-shrink: 0;
     background-color: $light-white;
     align-items: center;
+
+    &__img{
+      box-sizing: border-box;
+      height: 100%;
+      width: 100%;
+      background-color: $light-white;
+      flex-shrink: 0;
+    }
   }
 
   &__desc{

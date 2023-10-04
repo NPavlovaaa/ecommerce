@@ -10,7 +10,7 @@ const Slider: FC<Props> = ({images}: Props) => (
     <Carousel autoPlay={false} loop={true} interval={2000} children={
         images ? images.map((item: string) => (
             <div className={styles.image_block}>
-                <img src={item} className={styles.image_block__img} alt="product image"/>
+                <img src={item} className={styles.image_block__img} alt="Product image"/>
             </div>
         ))
         : null}

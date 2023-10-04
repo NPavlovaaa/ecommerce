@@ -1,0 +1,9 @@
+@import "variables";
+
+.addToCart{
+    @include custom_button(transparent, $light-white, black, black, $secondary);
+}
+
+.addedToCart{
+    @include custom_button(transparent, $accent-hover, $accent, white, $accent);
+}

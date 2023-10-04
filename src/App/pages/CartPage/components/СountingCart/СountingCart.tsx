@@ -1,20 +1,27 @@
 import styles from "./СountingCart.module.scss";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Text from "components/Text";
 import Button from "components/Button";
-import {observer} from "mobx-react";
+import {observer} from "mobx-react-lite";
 import rootStore from "store/RootStore/instance";
-import {ProductModel} from "store/models/products/Product";
 import classNames from "classnames";
 import PointIcon from "components/Icons/PointIcon";
 
 
 const CountingCart = observer(() => {
     const cartStore =  rootStore.cart;
-    const cartList: ProductModel[] = cartStore.cartList;
-    const total_cost = cartList.reduce((acc, cur) => acc + cur.price, 0);
-    const total_count = cartList.length;
     const [usePoints, setUsePoints] = useState(false);
+
+    const total_cost: number = cartStore.total_cost;
+    const total_count: number = cartStore.total_count;
+    const points: number = rootStore.cart.allPoints;
+    const availablePoints: number = cartStore.availablePoints;
+    const total: number = cartStore.total;
+
+    useEffect(() => {
+        rootStore.cart.getCartList();
+    }, [rootStore.cart])
+
 
     return(
         <div className={styles.counting_cart}>
@@ -61,20 +68,20 @@ const CountingCart = observer(() => {
                         <div className={styles.counting_cart__total_cost}>
                             <Text children="Your points" view="p-16" color="secondary"/>
                             <div className={styles.icon_block}>
-                                <Text children={5} view="p-16" color="secondary"/>
+                                <Text children={points} view="p-16" color="secondary"/>
                                 <PointIcon width={15} height={15}/>
                             </div>
                         </div>
                         <div className={styles.counting_cart__total_cost}>
                             <Text children="Available for withdrawal" view="p-14" color="secondary"/>
                             <div className={styles.icon_block}>
-                                <Text children={5} view="p-16" color="secondary"/>
+                                <Text children={availablePoints} view="p-16" color="secondary"/>
                                 <PointIcon width={15} height={15}/>
                             </div>
                         </div>
                         <div className={styles.counting_cart__total_cost}>
                             <Text children="Total" view="p-20" weight="bold"/>
-                            <Text children={`${total_cost} $`} view="p-20" weight="bold"/>
+                            <Text children={`${total} $`} view="p-20" weight="bold"/>
                         </div>
                     </>
                     : null

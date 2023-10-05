@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from "./Input.module.scss";
+import classNames from "classnames";
 
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>,
     'onChange' | 'value'
@@ -32,7 +33,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       }
 
       return (
-          <div className={styles.bg_block}>
+          <div className={classNames(styles.bg_block, className)}>
             <input placeholder={placeholder} className={styles.input} type="text" value={value} disabled={disabled} onChange={handleChange} {...props}/>
             <label className={styles.label}>{afterSlot ? afterSlot : null}</label>
           </div>

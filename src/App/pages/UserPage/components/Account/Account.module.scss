@@ -1,0 +1,52 @@
+@import "variables";
+
+.account_body_page{
+  @include custom_display(none, space-between, $space-l);
+
+  .user_info{
+    @include custom_display(column, none, $space-s);
+    background-color: white;
+    border-radius: 20px;
+    flex-basis: 40%;
+    align-items: center;
+    padding: $space-l 0;
+
+  }
+
+  .user_data{
+    @include custom_display(column, none, $space-l);
+    background-color: white;
+    border-radius: 20px;
+    flex-basis: 60%;
+    padding: $space-s $space-l;
+
+    &__row{
+      @include custom_display(none, space-between, $space-l);
+    }
+
+    &__input{
+      border: 2px solid $light-white;
+      border-radius: 20px;
+      padding: 1px 10px;
+    }
+
+  }
+
+  &__image_block{
+    @include custom_display(column, center, $space-xxs);
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    align-items: center;
+
+    &__img{
+      box-sizing: border-box;
+      height: 100%;
+      width: 100%;
+      background-color: $light-white;
+      flex-shrink: 0;
+      border-radius: 50px;
+    }
+  }
+
+}

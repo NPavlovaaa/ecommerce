@@ -1,0 +1,25 @@
+@import "variables";
+
+.user_body_page{
+  @include custom_display(column, none, $space-l);
+  padding: 60px 100px 48px 100px;
+
+  .link{
+    text-decoration: none;
+    color: black;
+  }
+
+  &__back{
+    @include custom_display(none, none, $space-xs);
+    height: 48px;
+    align-items: center;
+    cursor: pointer;
+
+    .arrow_back {
+      @include custom_display(none, center);
+      width: 32px;
+      height: 32px;
+      align-items: center;
+    }
+  }
+}

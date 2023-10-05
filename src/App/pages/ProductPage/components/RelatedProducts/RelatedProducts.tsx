@@ -48,7 +48,6 @@ const RelatedProducts: React.FC<Props> = observer(({products}: Props) => {
                     <Text children="Related products not found :(" view="p-20"/>
                 </div>
             }
-
         </div>
     )
 })

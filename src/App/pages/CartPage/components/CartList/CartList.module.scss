@@ -2,4 +2,10 @@
 
 .cart_list{
   @include custom_display(column, none, $space-xs);
+
+  &__empty{
+    @include custom_display(column, none, $space-m);
+    align-items: center;
+    margin-top: $space-l;
+  }
 }

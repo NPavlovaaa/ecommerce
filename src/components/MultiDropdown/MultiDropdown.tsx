@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Input from '../Input';
 import styles from './MultiDropdown.module.scss';
-import styles_input from 'components/Input/Input.module.scss';
 import ArrowDownIcon from '../Icons/ArrowDownIcon';
 
 export type Option = {
@@ -55,7 +54,6 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
                 value={!value ? undefined : getTitle(value)}
                 disabled={disabled}
                 afterSlot={<ArrowDownIcon color="secondary" onClick={() => setIsOpen(!isOpen)}/>}
-                className={styles_input.input}
                 {...props}
             />
             {isOpen && !disabled && (

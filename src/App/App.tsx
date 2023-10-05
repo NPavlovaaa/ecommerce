@@ -7,6 +7,8 @@ import CartPage from "./pages/CartPage";
 import rootStore from "store/RootStore/instance";
 import {observer} from "mobx-react-lite";
 import ModalWindow from "../components/ModalWIndow";
+import UserPage from "./pages/UserPage";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 
 const App = observer(() =>  {
@@ -34,9 +36,18 @@ const App = observer(() =>  {
             <Header onLogin={isShowModal}/>
             {showModal ? <ModalWindow showModal={showModal} isShowModal={isShowModal}/> : null}
             <Routes>
-                <Route path="/" element={<MainPage />}/>
-                <Route path="/product/:id" element={<ProductPage />}/>
-                <Route path="/cart" element={<CartPage/>}/>
+                <Route path="/" element={<MainPage/>}/>
+                <Route path="/product/:id" element={<ProductPage/>}/>
+                <Route path="/cart" element={
+                    <ProtectedRoute user={user}>
+                        <CartPage/>
+                    </ProtectedRoute>
+                }/>
+                <Route path="/user" element={
+                    <ProtectedRoute user={user}>
+                        <UserPage/>
+                    </ProtectedRoute>
+                }/>
             </Routes>
         </>
     )

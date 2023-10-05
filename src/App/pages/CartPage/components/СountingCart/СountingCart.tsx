@@ -26,7 +26,7 @@ const CountingCart = observer(() => {
     return(
         <div className={styles.counting_cart}>
             <div className={styles.counting_cart__button_block}>
-                <Button>Proceed to Checkout</Button>
+                <Button disabled={cartStore.cartList.length <= 0}>Proceed to Checkout</Button>
             </div>
             <Text view="p-14" color="secondary" children="Available delivery methods and times can be&nbsp;selected when placing an&nbsp;order."/>
             <div className={styles.counting_cart__total_count}>

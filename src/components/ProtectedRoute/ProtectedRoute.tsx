@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Navigate} from "react-router-dom";
-import {UserModel} from "../../store/models/users/User";
+import {UserModel} from "store/models/users/User";
 
 type Props = {
     user: UserModel | null,

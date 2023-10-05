@@ -8,11 +8,12 @@ import {ProductModel} from "store/models/products/Product";
 import Spinner from "components/Spinner/Spinner";
 import Text from "components/Text";
 import Button from "components/Button";
+import {useNavigate} from "react-router-dom";
 
 
 const CartList = observer(() => {
     const cartStore =  rootStore.cart;
-
+    const navigate = useNavigate();
     useEffect(() => {
         cartStore.getCartList();
     }, [cartStore])
@@ -28,7 +29,7 @@ const CartList = observer(() => {
             :
                 <div className={styles.cart_list__empty}>
                     <Text children="Cart is empty :(" view="p-20"/>
-                    <Button children="Go shopping"/>
+                    <Button children="Go shopping" onClick={() => navigate('/')}/>
                 </div>
             }
         </div>

@@ -24,8 +24,8 @@ const ModalWindow: FC<Props> = ({isShowModal, showModal}: Props) => {
                 <>
                     <Formik
                         initialValues ={{
-                            email: 'john@mail.com',
-                            password: 'changeme',
+                            email: '',
+                            password: '',
                         }}
                         validationSchema={Yup.object({
                             email: Yup.string()
@@ -52,6 +52,10 @@ const ModalWindow: FC<Props> = ({isShowModal, showModal}: Props) => {
                                     <Text children="x" color="primary" view="p-20"/>
                                 </Button>
                                 <Text children="Authorization" color="primary" view="title"/>
+                                <div className={styles.email}>
+                                    <Text children="email: john@mail.com" color="primary" view="p-16"/>
+                                    <Text children="password: changeme" color="primary" view="p-16"/>
+                                </div>
                                 <Form method="POST">
                                     <div className={styles.modal__form}>
                                         <div className={styles.form_item}>

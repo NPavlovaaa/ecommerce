@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const buildPath = path.resolve(__dirname, 'dist');
+const buildPath = path.resolve(__dirname, 'build');
 const srcPath = path.resolve(__dirname, 'src');
 const isProd = process.env.NODE_ENV === 'production';
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -27,7 +27,6 @@ const getSettingsForStyles = (withModules = false) => {
 }
 
 module.exports = {
-    mode: 'development',
     entry: path.join(srcPath, 'main.tsx'),
     target: !isProd ? 'web' : 'browserslist',
     devtool: !isProd ? 'hidden-source-map' : 'eval-source-map',
